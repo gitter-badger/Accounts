@@ -1,0 +1,20 @@
+{
+  "name": "accounts",
+  "version": "0.0.0",
+  "homepage": "https://github.com/People-Cloud/accounts",
+  "authors": [
+    "Wayne Austin email = wayneaustin@benefex.co.uk"
+  ],
+  "description": "The user's account management area of the RewardHub",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.2"
+  }
+}
