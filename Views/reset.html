@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="../resources/styles/_Grid.css" rel="stylesheet">
+    <link href="../resources/styles/normalise.css" rel="stylesheet">
+    <link href="../resources/styles/modules.css" rel="stylesheet">
+
+</head>
+<body lang="en" class="row">
+
+
+<div class="container" id="forgotten-password">
+    <h1 class="page-header">Forgotten your password?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <p>
+                To reset your password we will need to send you a reset code. Please enter your <span class="bold-text">Username, Employee ID or Email</span> so we can confirm that this account belongs to you.
+            </p>
+
+            <div class="form-wrapper">
+                <label for="username" class="input label-heading">Username</label>
+                <input required name="username" id="username" type="text" class="input text username-icon" placeholder="Username" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>
+
+
+<div class="container" id="receive-code">
+    <h1 class="page-header">Forgotten your password?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <p>
+                Thanks for <span class="bold-text">confirming your account</span>. How would you like to receive your password reset code?
+            </p>
+            <form name="form" method="post" action="{{model.loginUrl}}">
+
+            <div class="form-wrapper coloured-box">
+                <input required name="reset" id="mobile-code" type="radio" class="input radio">
+                <label for="mobile-code" class="input radio label-heading">Text a reset code to my mobile</label>
+            </div>
+
+            <div class="form-wrapper coloured-box">
+                <input required name="reset" id="email-code" type="radio" class="input radio"">
+                <label for="email-code" class="input radio label-heading">Text a reset code to my email address</label>
+            </div>
+            </form>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Send code</button>
+            </div>
+
+        </fieldset>
+</div>
+
+
+<div class="container" id="enter-code">
+    <h1 class="page-header">Forgotten your password?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <p>
+                A <span class="bold-text">6 digit reset code</span> has been sent to your <span class="bold-text">mobile phone</span>. Please use this code to create a new password.
+            </p>
+
+            <div class="form-wrapper">
+                <label for="reset" class="input label-heading">Enter your reset code</label>
+                <input required name="reset" id="reset" type="text" class="input text reset-icon" placeholder="Enter your reset code" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+
+<div class="container" id="not-received-code">
+    <h1 class="page-header">Forgotten your password?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <h3>Haven't received your reset code yet?</h3>
+            <p>
+                Please check that you are within network range! If you still don't receive your reset code within the next 10 minutes then please
+                <span class="bold-text"> <a href="">get in touch</a></span> and we will do our best to assist you.
+            </p>
+
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Back</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<script src="../Resources/Scripts/jquery-1.11.0.js"></script>
+<script src="../Resources/Scripts/reset.js"></script>
+</body>
+</html>

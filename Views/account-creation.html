@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Account</title>
+
+    <link href="../resources/styles/_Grid.css" rel="stylesheet">
+    <link href="../resources/styles/normalise.css" rel="stylesheet">
+    <link href="../resources/styles/modules.css" rel="stylesheet">
+
+</head>
+<body lang="en" class="row">
+
+<div class="container" id="enter-code">
+    <h1 class="page-header">Please sign in
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <p>
+                Make your password <span class="bold-text">memorable and unique! </span>Your new password must contain:
+            </p>
+
+                <ul class="password-validation">
+                    <li id="specialCharacter" class="invalid"><span>!*</span><p>special character</p></li>
+                    <li id="number" class="invalid"><span>6</span><p>one number</p></li>
+                    <li id="letter" class="invalid"><span>a</span><p>Upper & lower case</p></li>
+                    <li id="length" class="invalid"><span>8+</span><p>8 characters</p></li>
+                </ul>
+
+            <div class="form-wrapper">
+                <label for="password" class="input label-heading">Password</label>
+                <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password" ng-model="model.password">
+                <button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+
+<div class="container" id="dont-lost-access">
+    <h1 class="page-header">Don't lose access to your account
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <p>
+                To ensure  you can get back into your account quickly and securely please provide either your email address or mobile number.
+                <span class="bold-text">We recommend you provide both.</span>
+            </p>
+
+            <div class="form-wrapper">
+                <label for="email" class="input label-heading">Enter your email address</label>
+                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.username">
+            </div>
+            <div class="form-wrapper">
+                <label for="mobile" class="input label-heading">Enter your mobile number</label>
+                <input required id="mobile" name="mobile" type="number" class="input text mobile-icon" placeholder="Mobile number" ng-model="model.password">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Login</button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+<div class="container" id="add-email-access">
+    <h1 class="page-header">Don't lose access to your account
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <p>
+                We have noticed that <span class="bold-text">we don't have your email address;</span> we strongly encourage you to provide us with one. Once you've started
+                using RewardHub we'll use your email to communicate with you regarding your account activity and to assist you, should you need to reset your password.
+            </p>
+
+            <div class="form-wrapper">
+                <label for="email" class="input label-heading">Enter your email address</label>
+                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+
+<div class="container" id="add-email-access">
+    <h1 class="page-header">Don't lose access to your account
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <p>
+                Losing access to your account can be a frustrating experience so we have created a simple and east way for you to
+                <span class="bold-text">reset your password using text message (SMS)</span>. All you need to do is provide us with your
+                mobile number and you are ready to go!
+            </p>
+
+            <div class="form-wrapper">
+                <label for="email" class="input label-heading">Enter your email address</label>
+                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+<script src="../Resources/Scripts/jquery-1.11.0.js"></script>
+<script src="../Resources/scripts/password-validation.js"></script>
+</body>
+</html>
