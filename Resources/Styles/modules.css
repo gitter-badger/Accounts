@@ -58,6 +58,22 @@ body.row {
   margin: 10px;
   font-size: 1.2em;
 }
+.subheading {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+.content-text {
+  font-size: 1em;
+}
+.content-text a {
+  color: #444;
+}
+.content-text a:hover {
+  color: inherit;
+}
+.content-text a:visited {
+  color: inherit;
+}
 .link-text {
   color: #22312c;
   position: absolute;
@@ -163,9 +179,11 @@ body.row {
 }
 .input.radio {
   margin-right: 10px;
+  cursor: pointer;
 }
 .input.radio.label {
   margin-left: 20px;
+  cursor: pointer;
 }
 .input.label-heading {
   font-size: 1.2em;
@@ -193,6 +211,8 @@ body.row {
   padding: 0;
   width: 100%;
   overflow: auto;
+  opacity: 1;
+  transition: opacity 5s ease-in-out;
 }
 .password-validation li {
   display: inline-block;
@@ -212,9 +232,9 @@ body.row {
   display: block;
   margin-top: 10px;
 }
-.invalid {
+.password-validation .invalid {
   color: #444;
 }
-.valid {
-  color: #b7b7b7;
+.password-validation .valid {
+  opacity: 0.5;
 }
