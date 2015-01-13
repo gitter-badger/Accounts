@@ -21,7 +21,7 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-            <p>
+            <p class="content-text">
                 To reset your password we will need to send you a reset code. Please enter your <span class="bold-text">Username, Employee ID or Email</span> so we can confirm that this account belongs to you.
             </p>
 
@@ -50,8 +50,8 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-            <p>
-                Thanks for <span class="bold-text">confirming your account</span>. How would you like to receive your password reset code?
+            <p class="content-text">
+                <span class="bold-text">Thanks for confirming your account.</span><br>How would you like to receive your reset code?
             </p>
             <form name="form" method="post" action="{{model.loginUrl}}">
 
@@ -61,8 +61,8 @@
             </div>
 
             <div class="form-wrapper coloured-box">
-                <input required name="reset" id="email-code" type="radio" class="input radio"">
-                <label for="email-code" class="input radio label-heading">Text a reset code to my email address</label>
+                <input required name="reset" id="email-code" type="radio" class="input radio">
+                <label for="email-code" class="input radio label-heading">Send a reset code to my email address</label>
             </div>
             </form>
 
@@ -84,8 +84,9 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-            <p>
-                A <span class="bold-text">6 digit reset code</span> has been sent to your <span class="bold-text">mobile phone</span>. Please use this code to create a new password.
+            <p class="content-text">
+                <span class="bold-text">A 6 digit reset code  has been sent to your mobile phone.</span><br>
+                Please use this code to create a new password.
             </p>
 
             <div class="form-wrapper">
@@ -97,6 +98,7 @@
 
             <div class="form-wrapper">
                 <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <a class="link-text right" href="">I haven't received my code</a>
             </div>
 
         </fieldset>
@@ -113,10 +115,11 @@
 
         <fieldset class="inner-content">
 
-            <h3>Haven't received your reset code yet?</h3>
-            <p>
-                Please check that you are within network range! If you still don't receive your reset code within the next 10 minutes then please
-                <span class="bold-text"> <a href="">get in touch</a></span> and we will do our best to assist you.
+            <h3 class="subheading">Haven't received your reset code yet?</h3>
+            <p class="content-text">
+                <span class="bold-text">Please check that you are within network range!</span>
+                If you still don't receive your reset code within the next 10 minutes then please
+                <a href="">get in touch</a></span> and we will do our best to assist you.
             </p>
 
 

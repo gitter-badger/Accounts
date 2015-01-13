@@ -8,9 +8,12 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
 
 .inner-content { border: none;  padding: 0; margin: 20px 50px;}
 
+
 .form-wrapper { height: 80px; margin-bottom: 20px; position: relative;
   &.coloured-box { background-color: #eee; height: auto; padding: 10px; }
-    &.selected { background-color:#0e7d07; color: #fff; }
+  &.selected { background-color:#0e7d07; color: #fff; }
+  &.white-box { background-color: #fff; height: auto; }
+  &.transparent-box { background-color: transparent; height: auto; padding: 10px; }
 }
 
 .divider { border-top: solid 1px #dedede; margin: 0; border-bottom: solid 1px #fcfcfc; border-left: none; border-right: none}
@@ -19,19 +22,19 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
 .page-header { padding: 20px; font-size: 1.2em; font-weight:300; color: #fff; background-color: #103c21; margin: 0 0 20px 0; position: relative;}
 
 .bold-text { font-weight: 700; }
+.small-text { font-size: 0.8em;}
+.icon-text { display: inline-block; margin: 10px; font-size: 1.2em; font-weight: 700; }
 
-.icon-text { display: inline-block; margin: 10px; font-size: 1.2em; }
+.subheading { font-size: 1.2em; font-weight: 700; margin: 0; padding: 0;}
 
-.subheading { font-size: 1.2em; font-weight: 700;}
-
-.content-text { font-size: 1em;
-  a { color: #444; }
-  a:hover { color: inherit; }
+.content-text { font-size: 1em; margin: 15px 0;
+  a { color: #444; font-weight: 700; }
+  a:hover { color: inherit; text-decoration: none;}
   a:visited { color: inherit; }
 }
 
 .link-text { color: #22312c; position: absolute;
-  &:hover { color:#4d5955; }
+  &:hover { color:#4d5955; text-decoration: none;}
   &.right { right: 0; top: 35px; }
   &.header { color: #fff; font-size: 0.75em; top: 22px; right: 20px;
     &:hover { color: #eaeaea;}
@@ -42,6 +45,7 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
 .icon { width:40px; height: 40px;  background-repeat: no-repeat; display: inline-block;
   &.email { background-image: url("../Images/email-icon.png"); float: left;}
   &.phone { background-image: url("../Images/phone-icon.png"); float: left;}
+  &.lock { background-image: url("../Images/lock-icon.png"); float: left;}
 }
 
 /* BUTTONS & INPUTS & INTERACTONS */
@@ -52,7 +56,7 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
 }
 
 .input { box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; -ms-box-sizing: border-box;
-  &.text { height: 43px; width: 100%; border: 1px solid #d5d5d5; margin-top:5px; display: block;
+  &.text { height: 47px; width: 100%; border: 1px solid #d5d5d5; margin-top:5px; display: block;
     /* styling for icon states inside text inputs*/
     &.password-icon { background: url("../Images/password-sprite.png") no-repeat #fff; padding-left: 50px; }
     &.username-icon { background: url("../Images/username-sprite.png") no-repeat #fff; padding-left: 50px; }
@@ -70,8 +74,7 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
   }
   &.label-heading { font-size: 1.2em; }
 }
-
-.unmask { position: absolute; right: 5px; text-indent: -9999px; top: 24px; width: 46px; height: 45px; background: url("../Images/eye-sprite.png") no-repeat transparent; border: none;
+.unmask { position: absolute; right: 1px; text-indent: -9999px; top: 29px; width: 46px; height: 45px; background: url("../Images/eye-sprite.png") no-repeat #fff; border-top: none; border-right: none; border-bottom: none; border-left: #dedede solid 1px;
   &:focus { outline: none; }
   &:hover, &.selected { background-position: 0 -45px; }
 }
@@ -85,3 +88,24 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
   .invalid { color:#444; }
   .valid { opacity: 0.5; }
 }
+
+/* RESPONSIVE STYLING */
+  /* PASSWORD VALIDATION */
+
+  @media screen and (max-width: 700px ) {
+    .password-validation li {width: 49%; text-align: left; margin-bottom: 1%; height: 70px;
+      &:nth-child(2) {margin-right: 0; }
+      span { margin-left: 10px; }
+      p { margin:5px 0 5px 10px; }
+    }
+  }
+
+  /* LAYOUT */
+  @media screen and (max-width: 700px ) {
+    .container { padding: 10px;}
+    .inner-content { margin: 20px 0;}
+  }
+
+/* END OF RESPONSIVE STYLING */
+
+

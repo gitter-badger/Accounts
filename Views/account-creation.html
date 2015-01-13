@@ -19,21 +19,20 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-            <p>
-                Make your password <span class="bold-text">memorable and unique! </span>Your new password must contain:
+            <p class="content-text">
+                Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
             </p>
 
                 <ul class="password-validation">
-                    <li id="specialCharacter" class="invalid"><span>!*</span><p>special character</p></li>
-                    <li id="number" class="invalid"><span>6</span><p>one number</p></li>
-                    <li id="letter" class="invalid"><span>a</span><p>Upper & lower case</p></li>
-                    <li id="length" class="invalid"><span>8+</span><p>8 characters</p></li>
+                    <li id="specialCharacter" class="invalid"><span>*!£^</span><p>A symbol</p></li>
+                    <li id="number" class="invalid"><span>3</span><p>A number</p></li>
+                    <li id="letter" class="invalid"><span>Aa</span><p>Upper / lower case</p></li>
+                    <li id="length" class="invalid"><span>8+</span><p>8 characters long</p></li>
                 </ul>
 
             <div class="form-wrapper">
-                <label for="password" class="input label-heading">Password</label>
+                <label for="password" class="input label-heading">New password</label>
                 <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password" ng-model="model.password">
-                <button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
             </div>
 
             <hr class="divider">
@@ -57,7 +56,7 @@
 
         <fieldset class="inner-content">
 
-            <p>
+            <p class="content-text">
                 To ensure  you can get back into your account quickly and securely please provide either your email address or mobile number.
                 <span class="bold-text">We recommend you provide both.</span>
             </p>
@@ -91,7 +90,7 @@
 
         <fieldset class="inner-content">
 
-            <p>
+            <p class="content-text">
                 We have noticed that <span class="bold-text">we don't have your email address;</span> we strongly encourage you to provide us with one. Once you've started
                 using RewardHub we'll use your email to communicate with you regarding your account activity and to assist you, should you need to reset your password.
             </p>
@@ -122,15 +121,15 @@
 
         <fieldset class="inner-content">
 
-            <p>
+            <p class="content-text">
                 Losing access to your account can be a frustrating experience so we have created a simple and east way for you to
                 <span class="bold-text">reset your password using text message (SMS)</span>. All you need to do is provide us with your
                 mobile number and you are ready to go!
             </p>
 
             <div class="form-wrapper">
-                <label for="email" class="input label-heading">Enter your email address</label>
-                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.username">
+                <label for="email" class="input label-heading">Enter your mobile number</label>
+                <input required name="email" id="email" type="text" class="input text mobile-icon" placeholder="Enter your phone number" ng-model="model.username">
             </div>
 
             <hr class="divider">
