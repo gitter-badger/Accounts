@@ -112,7 +112,7 @@ body.row {
 }
 .link-text.right {
   right: 0;
-  top: 35px;
+  bottom: 10px;
   max-width: 50%;
 }
 .link-text.header {
