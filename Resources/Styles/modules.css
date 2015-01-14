@@ -287,9 +287,13 @@ body.row {
 @media screen and (max-width: 700px) {
   .container {
     padding: 10px;
+    margin-top: 30px;
   }
   .inner-content {
     margin: 20px 0;
+  }
+  .page-header {
+    padding-right: 70px;
   }
 }
 /* END OF RESPONSIVE STYLING */
