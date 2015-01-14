@@ -102,7 +102,7 @@ namespace Accounts
         public static string UserInfoEndpoint = AuthAddress + "/connect/userinfo";
         public static string IdentityTokenValidationEndpoint = AuthAddress + "/connect/identitytokenvalidation";
 
-        public static string CallbackEndpoint = BaseAddress.TrimEnd('/') + "/callback";
+        public static string CallbackEndpoint = BaseAddress;
 
         public const string AspNetWebApiSampleApi = "http://localhost:2727/";
     }
