@@ -70,6 +70,15 @@ body.row {
   margin: 10px;
   font-size: 1.2em;
   font-weight: 700;
+  color: inherit;
+  word-break: break-word;
+}
+.icon-text:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.icon-text:visited {
+  color: inherit;
 }
 .subheading {
   font-size: 1.2em;
@@ -104,6 +113,7 @@ body.row {
 .link-text.right {
   right: 0;
   top: 35px;
+  max-width: 50%;
 }
 .link-text.header {
   color: #fff;
@@ -318,6 +328,14 @@ input#password[type="text"] + .unmask {
   }
   .timer-wrap {
     margin: 15px 0 15px 20%;
+  }
+  .icon.email,
+  .icon.phone {
+    display: none;
+  }
+  .icon-text {
+    margin: 0;
+    font-size: 0.9em;
   }
 }
 /* END OF RESPONSIVE STYLING */
