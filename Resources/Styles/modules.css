@@ -80,6 +80,7 @@ body.row {
 .content-text {
   font-size: 1em;
   margin: 15px 0;
+  line-height: 1.3em;
 }
 .content-text a {
   color: #444;
@@ -109,9 +110,6 @@ body.row {
   font-size: 0.75em;
   top: 22px;
   right: 20px;
-}
-.link-text.header:hover {
-  color: #eaeaea;
 }
 /* ICONS */
 .icon {
@@ -145,6 +143,9 @@ body.row {
 }
 .btn.action {
   background-color: #0e7d07;
+}
+.btn.action:hover {
+  background-color: #188b10;
 }
 .btn.action:disabled {
   background-color: #a9a9a9;

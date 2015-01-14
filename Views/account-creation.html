@@ -12,7 +12,7 @@
 <body lang="en" class="row">
 
 <div class="container" id="enter-code">
-    <h1 class="page-header">Please sign in
+    <h1 class="page-header">Create a new password
         <a class="link-text right header" href="">Help!</a>
     </h1>
     <form name="form" method="post" action="{{model.loginUrl}}">
@@ -74,6 +74,8 @@
 
             <div class="form-wrapper">
                 <button class="btn action" ng-disabled="form.$invalid">Login</button>
+                <a class="link-text right" href="">No thanks, sign me in</a>
+
             </div>
         </fieldset>
     </form>
@@ -104,6 +106,7 @@
 
             <div class="form-wrapper">
                 <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <a class="link-text right" href="">No thanks, sign me in</a>
             </div>
         </fieldset>
     </form>
@@ -136,6 +139,7 @@
 
             <div class="form-wrapper">
                 <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <a class="link-text right" href="">No thanks, sign me in</a>
             </div>
         </fieldset>
     </form>
