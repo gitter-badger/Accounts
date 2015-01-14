@@ -333,9 +333,14 @@ input#password[type="text"] + .unmask {
   .icon.phone {
     display: none;
   }
-  .icon-text {
+  .icon-text,
+  .input.label-heading {
     margin: 0;
     font-size: 0.9em;
+  }
+  .form-wrapper.coloured-box {
+    height: 30px;
+    padding: 20px 10px 10px 10px;
   }
 }
 /* END OF RESPONSIVE STYLING */
