@@ -204,9 +204,9 @@
     <Content Include="Resources\Images\reset-sprite.png" />
     <Content Include="Resources\Images\username-sprite.png" />
     <Content Include="Resources\Scripts\angular.1.2.13.js" />
+    <Content Include="Resources\Scripts\app.js" />
     <Content Include="Resources\Scripts\jquery-1.11.0.js" />
     <Content Include="Resources\Scripts\password-validation.js" />
-    <Content Include="Resources\Scripts\password-validation].js" />
     <Content Include="Resources\Scripts\reset.js" />
     <Content Include="Resources\Styles\modules.css" />
     <Content Include="Resources\Styles\normalise.css" />
