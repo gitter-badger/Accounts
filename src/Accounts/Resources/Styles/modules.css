@@ -8,11 +8,23 @@ body {
 body.row {
   width: 700px;
 }
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
 .container {
-  background-color: #f3f3f3;
   margin-top: 150px;
   margin-bottom: 50px;
   padding: 20px;
+  background-color: #f3f3f3;
+}
+.container .content {
+  position: relative;
+  overflow: hidden;
 }
 .inner-content {
   border: none;
@@ -41,6 +53,18 @@ body.row {
   background-color: transparent;
   height: auto;
   padding: 10px;
+}
+.capture-comms-form {
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 30px;
+  background: #f3f3f3;
 }
 .divider {
   border-top: solid 1px #dedede;
@@ -226,6 +250,11 @@ body.row {
 .input.label-heading {
   font-size: 1.2em;
 }
+.input[type=number]::-webkit-inner-spin-button,
+.input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .unmask {
   position: absolute;
   right: 1px;
@@ -280,6 +309,50 @@ input#password[type="text"] + .unmask {
 }
 .password-validation .valid {
   opacity: 0.5;
+}
+/* ANIMATIONS */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(20px);
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(20px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.bounceInDown {
+  display: block!important;
+  -webkit-animation-name: bounceInDown;
+  animation-name: bounceInDown;
 }
 /* RESPONSIVE STYLING */
 /* PASSWORD VALIDATION */
