@@ -1,0 +1,346 @@
+/* LAYOUT STYLING */
+body {
+  background: url("../Images/bg_main.jpg") no-repeat fixed;
+  background-size: cover;
+  font-weight: 100;
+  color: #444;
+}
+body.row {
+  width: 700px;
+}
+.container {
+  background-color: #f3f3f3;
+  margin-top: 150px;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+.inner-content {
+  border: none;
+  padding: 0;
+  margin: 20px 50px;
+}
+.form-wrapper {
+  height: 80px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.form-wrapper.coloured-box {
+  background-color: #eee;
+  height: auto;
+  padding: 10px;
+}
+.form-wrapper.selected {
+  background-color: #0e7d07;
+  color: #fff;
+}
+.form-wrapper.white-box {
+  background-color: #fff;
+  height: auto;
+}
+.form-wrapper.transparent-box {
+  background-color: transparent;
+  height: auto;
+  padding: 10px;
+}
+.divider {
+  border-top: solid 1px #dedede;
+  margin: 0;
+  border-bottom: solid 1px #fcfcfc;
+  border-left: none;
+  border-right: none;
+}
+/* TEXT STYLING */
+.page-header {
+  padding: 20px;
+  font-size: 1.2em;
+  font-weight: 300;
+  color: #fff;
+  background-color: #103c21;
+  margin: 0 0 40px 0;
+  position: relative;
+}
+.bold-text {
+  font-weight: 700;
+}
+.small-text {
+  font-size: 0.8em;
+}
+.icon-text {
+  display: inline-block;
+  margin: 10px;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: inherit;
+  word-break: break-word;
+}
+.icon-text:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.icon-text:visited {
+  color: inherit;
+}
+.subheading {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+.content-text {
+  font-size: 1em;
+  margin: 15px 0;
+  line-height: 1.3em;
+}
+.content-text a {
+  color: #444;
+  font-weight: 700;
+}
+.content-text a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.content-text a:visited {
+  color: inherit;
+}
+.link-text {
+  color: #22312c;
+  position: absolute;
+}
+.link-text:hover {
+  color: #4d5955;
+  text-decoration: none;
+}
+.link-text.right {
+  right: 0;
+  bottom: 10px;
+  max-width: 50%;
+}
+.link-text.header {
+  color: #fff;
+  font-size: 0.75em;
+  top: 22px;
+  right: 20px;
+}
+/* ICONS */
+.icon {
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.icon.email {
+  background-image: url("../Images/email-icon.png");
+  float: left;
+}
+.icon.phone {
+  background-image: url("../Images/phone-icon.png");
+  float: left;
+}
+.icon.lock {
+  background-image: url("../Images/lock-icon.png");
+  float: left;
+}
+/* BUTTONS & INPUTS & INTERACTONS */
+.btn {
+  max-width: 25%;
+  width: 100%;
+  height: 50px;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  margin-top: 20px;
+  min-width: 120px;
+}
+.btn.action {
+  background-color: #0e7d07;
+}
+.btn.action:hover {
+  background-color: #188b10;
+}
+.btn.action:disabled {
+  background-color: #a9a9a9;
+}
+.input {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+.input.text {
+  height: 47px;
+  width: 100%;
+  border: 1px solid #d5d5d5;
+  margin-top: 5px;
+  display: block;
+  /* styling for icon states inside text inputs*/
+}
+.input.text.password-icon {
+  background: url("../Images/password-sprite.png") no-repeat #ffffff;
+  padding-left: 57px;
+}
+.input.text.username-icon {
+  background: url("../Images/username-sprite.png") no-repeat #ffffff;
+  padding-left: 57px;
+}
+.input.text.reset-icon {
+  background: url("../Images/reset-sprite.png") no-repeat #ffffff;
+  padding-left: 57px;
+}
+.input.text.mobile-icon {
+  background: url("../Images/mobile-sprite.png") no-repeat #ffffff;
+  padding-left: 57px;
+}
+.input.text.email-icon {
+  background: url("../Images/email-sprite.png") no-repeat #ffffff;
+  padding-left: 57px;
+}
+.input.text:focus {
+  outline: transparent;
+  background-position: 0 -45px;
+}
+.input.text:invalid {
+  box-shadow: none;
+}
+.input.text:-moz-submit-invalid {
+  box-shadow: none;
+}
+.input.text:-moz-ui-invalid {
+  box-shadow: none;
+}
+.input.text::-ms-reveal {
+  display: none;
+}
+.input.text:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+  padding-left: 10px;
+}
+.input.radio {
+  margin-right: 10px;
+  cursor: pointer;
+}
+.input.radio.label {
+  margin-left: 20px;
+  cursor: pointer;
+}
+.input.label-heading {
+  font-size: 1.2em;
+}
+.unmask {
+  position: absolute;
+  right: 1px;
+  text-indent: -9999px;
+  top: 29px;
+  width: 46px;
+  height: 45px;
+  background: url("../Images/eye-sprite.png") no-repeat transparent;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: #dedede solid 1px;
+}
+.unmask:focus {
+  outline: none;
+}
+.unmask.selected {
+  background-position: 0 -45px;
+}
+input#password[type="text"] + .unmask {
+  background-position: 0 -45px;
+}
+/* PASSWORD VALIDATION */
+.password-validation {
+  margin: 0 0 20px 0;
+  padding: 0;
+  width: 100%;
+  overflow: auto;
+  opacity: 1;
+  transition: opacity 5s ease-in-out;
+}
+.password-validation li {
+  display: inline-block;
+  width: 24.25%;
+  background-color: #eee;
+  text-align: center;
+  float: left;
+  margin-right: 1%;
+  height: 90px;
+  font-size: 12px;
+}
+.password-validation li:nth-child(4) {
+  margin-right: 0;
+}
+.password-validation li span {
+  font-size: 30px;
+  display: block;
+  margin-top: 10px;
+}
+.password-validation .invalid {
+  color: #444;
+}
+.password-validation .valid {
+  opacity: 0.5;
+}
+/* RESPONSIVE STYLING */
+/* PASSWORD VALIDATION */
+@media screen and (max-width: 700px) {
+  .password-validation li {
+    width: 49%;
+    text-align: left;
+    margin-bottom: 1%;
+    height: 70px;
+  }
+  .password-validation li:nth-child(2) {
+    margin-right: 0;
+  }
+  .password-validation li span {
+    margin-left: 10px;
+  }
+  .password-validation li p {
+    margin: 5px 0 5px 10px;
+  }
+}
+/* LAYOUT */
+@media screen and (max-width: 700px) {
+  body.row {
+    width: 100%;
+  }
+  .container {
+    padding: 10px;
+    margin-top: 30px;
+  }
+  .inner-content {
+    margin: 0;
+  }
+  .page-header {
+    padding-right: 70px;
+    margin-bottom: 20px;
+  }
+  .form-wrapper {
+    padding: 0;
+  }
+  .form-wrapper.transparent-box {
+    padding: 10px 0;
+  }
+  .login-fail-message {
+    width: 100%;
+    padding: 0;
+  }
+  .timer-wrap {
+    margin: 15px 0 15px 20%;
+  }
+  .icon.email,
+  .icon.phone {
+    display: none;
+  }
+  .icon-text,
+  .input.label-heading {
+    margin: 0;
+    font-size: 0.9em;
+  }
+  .form-wrapper.coloured-box {
+    height: 30px;
+    padding: 20px 10px 10px 10px;
+  }
+}
+/* END OF RESPONSIVE STYLING */

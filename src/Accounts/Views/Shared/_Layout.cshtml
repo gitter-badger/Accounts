@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Account</title>
+
+    <title>@ViewBag.Title</title>
+
+    <link href="~/resources/styles/_Grid.css" rel="stylesheet">
+    <link href="~/resources/styles/normalise.css" rel="stylesheet">
+    <link href="~/resources/styles/modules.css" rel="stylesheet">
+
+</head>
+<body lang="en" class="row">
+
+    @RenderBody()
+    
+    <script src="~/Resources/Scripts/jquery-1.11.0.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

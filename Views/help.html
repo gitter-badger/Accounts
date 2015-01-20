@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Help</title>
+
+    <link href="../resources/styles/_Grid.css" rel="stylesheet">
+    <link href="../resources/styles/normalise.css" rel="stylesheet">
+    <link href="../resources/styles/modules.css" rel="stylesheet">
+
+</head>
+<body lang="en" class="row">
+
+
+<div class="container" id="help">
+    <h1 class="page-header">Here to help!
+    </h1>
+
+    <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+    <div class="inner-content">
+        <p class="content-text">
+            If you are having any difficulties using this system <span class="bold-text">please contact us on:</span>
+        </p>
+
+            <div class="form-wrapper coloured-box">
+                <i class="icon email"></i>
+                <a href="mailto:support@benefitadmin.co.uk" class="icon-text">support@benefitadmin.co.uk</a>
+            </div>
+
+            <div class="form-wrapper coloured-box">
+                <i class="icon phone"></i>
+                <p class="icon-text">088 2336 7442
+                    <span class="small-text"> (Lines open from 8am - 6pm)</span>
+                </p>
+            </div>
+
+        <hr class="divider">
+
+        <div class="form-wrapper">
+            <button class="btn action" ng-disabled="form.$invalid">Close</button>
+        </div>
+
+    </fieldset>
+</div>
+
+</body>
+</html>
