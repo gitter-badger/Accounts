@@ -138,6 +138,7 @@ body.row {
   right: 0;
   bottom: 10px;
   max-width: 50%;
+  font-size: 0.9em;
 }
 .link-text.header {
   color: #fff;
@@ -314,50 +315,6 @@ input#password[type="text"] + .unmask {
 .password-validation .valid {
   opacity: 0.5;
 }
-/* ANIMATIONS */
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-@-webkit-keyframes bounceInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-2000px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateY(20px);
-  }
-  80% {
-    -webkit-transform: translateY(-10px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-  }
-}
-@keyframes bounceInDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-2000px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(20px);
-  }
-  80% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-.bounceInDown {
-  display: block!important;
-  -webkit-animation-name: bounceInDown;
-  animation-name: bounceInDown;
-}
 /* RESPONSIVE STYLING */
 /* PASSWORD VALIDATION */
 @media screen and (max-width: 700px) {
@@ -389,11 +346,56 @@ input#password[type="text"] + .unmask {
   .inner-content {
     margin: 0;
   }
+  /* ANIMATIONS */
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  @-webkit-keyframes bounceInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(-2000px);
+    }
+    60% {
+      opacity: 1;
+      -webkit-transform: translateY(20px);
+    }
+    80% {
+      -webkit-transform: translateY(-10px);
+    }
+    100% {
+      -webkit-transform: translateY(0);
+    }
+  }
+  @keyframes bounceInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-2000px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(20px);
+    }
+    80% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .bounceInDown {
+    display: block!important;
+    -webkit-animation-name: bounceInDown;
+    animation-name: bounceInDown;
+  }
   .page-header {
     padding-right: 70px;
     margin-bottom: 20px;
   }
-  .form-wrapper {
+  .form-wrapper,
+  .capture-comms-form {
     padding: 0;
   }
   .form-wrapper.transparent-box {
@@ -410,16 +412,9 @@ input#password[type="text"] + .unmask {
   .icon.phone {
     display: none;
   }
-  .icon-text,
-  .input.label-heading {
-    margin: 0;
-    font-size: 0.9em;
-  }
   .form-wrapper.coloured-box {
     height: 30px;
     padding: 20px 10px 10px 10px;
   }
-  .unmask {
-    top: 24px;
-  }
+}
 /* END OF RESPONSIVE STYLING */
