@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Account</title>
+
+    <title>@ViewBag.Title</title>
+
+    <link href="../../Resources/styles/_Grid.less" rel="stylesheet">
+    <link href="../../resources/styles/normalise.css" rel="stylesheet">
+    <link href="../../resources/styles/modules.css" rel="stylesheet">
+
+</head>
+<body lang="en" class="row">
+
+<div class="container" id="two-factor">
+    <h1 class="page-header">Two factor security
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <p class="content-text">
+                A code has been sent to your registered mobile device.
+            </p>
+
+            <div class="form-wrapper">
+                <label for="code" class="input label-heading">Enter your code</label>
+                <input required name="code" id="code" type="text" class="input text lock-icon" placeholder="Username" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Confirm</button>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>
+
+<div class="container" id="two-factor-help">
+    <h1 class="page-header">Two factor security
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <p class="content-text">
+                Haven't received your code?<br>
+                <a href="">Get in touch</a>
+            </p>
+
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Back</button>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>
+
+<div class="container" id="not-received-code">
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <h3 class="subheading">Oops!</h3>
+            <p class="content-text">
+                The code you entered is incorrect. Please try again.
+            </p>
+
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Ok, thanks</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<script src="../../Resources/Scripts/jquery-1.11.0.js"></script>
+
+</body>
+</html>

@@ -2,8 +2,8 @@
     ViewBag.Title = "Account";
 }
 <div data-ng-app="app" data-ng-controller="CompletionController" class="container" id="add-contact-details" ng-cloak>
-    <h1 class="page-header">Create a new password
-        <span data-ng-if="!account.passwordSet">Please sign in</span>
+    <h1 class="page-header">
+        <span data-ng-if="!account.passwordSet">Create a new password</span>
         <span data-ng-if="account.passwordSet">Don't lose access to your account</span>
         <a class="link-text right header" href="">Help!</a>
     </h1>
@@ -90,9 +90,11 @@
                 <a id="skip-capture" href="" class="link-text right"></a>
             </div>
         </form>
+        <div>
+        </div>
+
     </div>
 </div>
-
 
 @section scripts {
 <script src="../Resources/Scripts/angular.1.2.13.js"></script>

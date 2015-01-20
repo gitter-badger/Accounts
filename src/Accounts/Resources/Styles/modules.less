@@ -15,7 +15,7 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
   }
 }
 
-.inner-content { border: none;  padding: 0; margin: 20px 50px;}
+.inner-content { border: none;  padding: 0; margin: 0 50px 20px;}
 
 
 .form-wrapper { height: 80px; margin-bottom: 20px; position: relative;
@@ -35,7 +35,8 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
   height: 100%;
   margin: 0;
   padding: 0 30px;
-  background: #f3f3f3; }
+  background: #f3f3f3;
+}
 
 .divider { border-top: solid 1px #dedede; margin: 0; border-bottom: solid 1px #fcfcfc; border-left: none; border-right: none}
 
@@ -87,6 +88,7 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
     &.reset-icon { background: url("../Images/reset-sprite.png") no-repeat #fff; padding-left: 57px; }
     &.mobile-icon { background: url("../Images/mobile-sprite.png")no-repeat #fff; padding-left: 57px; }
     &.email-icon { background: url("../Images/email-sprite.png")no-repeat #fff; padding-left: 57px; }
+    &.lock-icon { background: url("../Images/lock-sprite.png")no-repeat #fff; padding-left: 57px; }
     &:focus { outline: transparent; background-position: 0 -45px;}
     &:invalid { box-shadow: none; }
     &:-moz-submit-invalid { box-shadow: none; }
@@ -105,7 +107,7 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
   }
 }
 
-.unmask { position: absolute; right: 1px; text-indent: -9999px; top: 29px; width: 46px; height: 45px; background: url("../Images/eye-sprite.png") no-repeat transparent; border-top: none; border-right: none; border-bottom: none; border-left: #dedede solid 1px;
+.unmask { position: absolute; right: 1px; text-indent: -9999px; top: 29px; width: 46px; height: 45px; background: url("../Images/eye-sprite.png") no-repeat transparent; border-top: none; border-right: none; border-bottom: none; border-left: 1px solid #dedede ;
   &:focus { outline: none; }
   &.selected { background-position: 0 -45px; }
 }
@@ -169,6 +171,7 @@ input#password[type="text"] + .unmask { background-position: 0 -45px;}
   .icon.email, .icon.phone { display: none;}
   .icon-text, .input.label-heading { margin:0; font-size: 0.9em; }
   .form-wrapper.coloured-box { height: 30px; padding: 20px 10px 10px 10px;}
+  .unmask { top:24px; }
 }
 /* END OF RESPONSIVE STYLING */
 
