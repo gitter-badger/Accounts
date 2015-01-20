@@ -9,11 +9,11 @@
 //});
 
 
-$(document).ready(function() {
+var $radios = $('input:radio');
 
-    var foo = $('input.radio:checked');
-
-    if ( foo.is(':checked') ) {
-        foo.parent().addClass('selected');
-    }
+$radios.change(function () {
+    $radios.parent().removeClass('selected');
+    $(this).parent().addClass('selected');
 });
+
+$radios.filter(':checked').parent().addClass('selected');

@@ -2,6 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
 
     <link href="../resources/styles/_Grid.css" rel="stylesheet">
@@ -13,7 +14,7 @@
 
 
 <div class="container" id="forgotten-password">
-    <h1 class="page-header">Forgotten your password?
+    <h1 class="page-header">Forgotten your sign in details?
         <a class="link-text right header" href="">Help!</a>
     </h1>
 
@@ -21,12 +22,12 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-            <p>
-                To reset your password we will need to send you a reset code. Please enter your <span class="bold-text">Username, Employee ID or Email</span> so we can confirm that this account belongs to you.
+            <p class="content-text">
+                <span class="bold-text">To reset your password we will need to send you a reset code.</span> Please enter your <span class="bold-text">Username, Employee ID or Email</span> so we can confirm that this account belongs to you.
             </p>
 
             <div class="form-wrapper">
-                <label for="username" class="input label-heading">Username</label>
+                <label for="username" class="input label-heading">Enter you Username, Employee ID or email</label>
                 <input required name="username" id="username" type="text" class="input text username-icon" placeholder="Username" ng-model="model.username">
             </div>
 
@@ -43,15 +44,15 @@
 
 
 <div class="container" id="receive-code">
-    <h1 class="page-header">Forgotten your password?
+    <h1 class="page-header">Forgotten your sign in details?
         <a class="link-text right header" href="">Help!</a>
     </h1>
 
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-            <p>
-                Thanks for <span class="bold-text">confirming your account</span>. How would you like to receive your password reset code?
+            <p class="content-text">
+                <span class="bold-text">Thanks for confirming your account.</span><br>How would you like to receive your reset code?
             </p>
             <form name="form" method="post" action="{{model.loginUrl}}">
 
@@ -61,8 +62,8 @@
             </div>
 
             <div class="form-wrapper coloured-box">
-                <input required name="reset" id="email-code" type="radio" class="input radio"">
-                <label for="email-code" class="input radio label-heading">Text a reset code to my email address</label>
+                <input required name="reset" id="email-code" type="radio" class="input radio">
+                <label for="email-code" class="input radio label-heading">Send a reset code to my email address</label>
             </div>
             </form>
 
@@ -77,15 +78,16 @@
 
 
 <div class="container" id="enter-code">
-    <h1 class="page-header">Forgotten your password?
+    <h1 class="page-header">Forgotten your sign in details?
         <a class="link-text right header" href="">Help!</a>
     </h1>
     <form name="form" method="post" action="{{model.loginUrl}}">
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-            <p>
-                A <span class="bold-text">6 digit reset code</span> has been sent to your <span class="bold-text">mobile phone</span>. Please use this code to create a new password.
+            <p class="content-text">
+                <span class="bold-text">A 6 digit reset code  has been sent to your mobile phone.</span><br>
+                Please use this code to create a new password.
             </p>
 
             <div class="form-wrapper">
@@ -97,6 +99,7 @@
 
             <div class="form-wrapper">
                 <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <a class="link-text right" href="">I haven't received my code</a>
             </div>
 
         </fieldset>
@@ -105,7 +108,7 @@
 
 
 <div class="container" id="not-received-code">
-    <h1 class="page-header">Forgotten your password?
+    <h1 class="page-header">Forgotten your sign in details?
         <a class="link-text right header" href="">Help!</a>
     </h1>
     <form name="form" method="post" action="{{model.loginUrl}}">
@@ -113,10 +116,11 @@
 
         <fieldset class="inner-content">
 
-            <h3>Haven't received your reset code yet?</h3>
-            <p>
-                Please check that you are within network range! If you still don't receive your reset code within the next 10 minutes then please
-                <span class="bold-text"> <a href="">get in touch</a></span> and we will do our best to assist you.
+            <h3 class="subheading">Haven't received your reset code yet?</h3>
+            <p class="content-text">
+                <span class="bold-text">Please check that you are within network range!</span><br>
+                If you still don't receive your reset code within the next 10 minutes then please
+                <a href="">get in touch</a></span> and we will do our best to assist you.
             </p>
 
 
