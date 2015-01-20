@@ -21,7 +21,6 @@
                     <li id="length" class="invalid"><span>8+</span><p>8 characters long</p></li>
                 </ul>
                 <div class="form-wrapper">
-                    <label for="password" class="input label-heading">Password</label>
                     <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password"
                            data-ng-required="true"
                            data-ng-model="model.password"
@@ -87,7 +86,7 @@
             <hr class="divider">
             <div class="form-wrapper">
                 <button id="submit" class="btn action" ng-disabled="form.$invalid">Continue</button>
-                <a id="skip-capture" href="" class="link-text right"></a>
+                <a class="link-text right" href="" id="skip-capture">No thanks, sign me in</a>
             </div>
         </form>
         <div>
