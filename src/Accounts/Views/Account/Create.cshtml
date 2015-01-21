@@ -14,26 +14,21 @@
             <p class="content-text">
                 Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
                 </p>
-                <ul class="password-validation">
-                    <li id="specialCharacter" class="invalid"><span>*!£^</span><p>A symbol</p></li>
-                    <li id="number" class="invalid"><span>3</span><p>A number</p></li>
-                    <li id="letter" class="invalid"><span>Aa</span><p>Upper / lower case</p></li>
-                    <li id="length" class="invalid"><span>8+</span><p>8 characters long</p></li>
-                </ul>
+                <div data-password-validator data-validity="passwordValidation" data-content="model.password"></div>
                 <div class="form-wrapper">
                 <label for="password" class="input label-heading">New password</label>
                     <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password"
                            data-ng-required="true"
                            data-ng-model="model.password"
-                           data-ng-disabled="formDisabled"
-                           data-ng-keyup="test()">
-                    <button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
+                           data-ng-disabled="isFormDisabled()">
+                    <button password-mask-control class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
                 </div>
                 <hr class="divider">
                 <div class="form-wrapper">
                     <button id="password-submit" class="btn action" type="submit"
-                            data-ng-disabled="createNewPassword.$invalid || formDisabled">Continue</button>
+                            data-ng-disabled="(createNewPassword.$invalid && validity) || isFormDisabled()">Continue</button>
                 </div>
+                <div loader-wrap data-ng-show="awaitingServerResponse" class="loader-wrap" data-loadertext="setting your new password..." ng-cloak></div>
             </fieldset>
         </form>
         <form id="capture-all" name="captureAll" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
@@ -97,5 +92,4 @@
 @section scripts {
 <script src="../Resources/Scripts/angular.1.2.13.js"></script>
 <script src="../Resources/Scripts/app.js"></script>
-<script src="../Resources/Scripts/password-validation.js"></script>
 }
