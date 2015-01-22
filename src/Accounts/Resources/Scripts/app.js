@@ -35,7 +35,9 @@
         };
 
         $scope.model = {
-            password:""
+            password:"",
+            email:"",
+            phone:""
         };
 
         var account = function() {
@@ -75,14 +77,9 @@
             } else if(!$scope.account.primaryEmailExists && $scope.account.primaryPhoneExists) {
                 $('#capture-email').addClass('bounceInDown');
             } else if(!$scope.account.primaryEmailExists && !$scope.account.primaryPhoneExists) {
-                $('#capture-all').addClass('bounceInDown');
+                $('#capture-email').addClass('bounceInDown');
             }
         };
-
-        $('#password-submit').on('click', function(e) {
-            e.preventDefault();
-            $scope.updatePassword();
-        });
 
     }]);
 
@@ -190,13 +187,6 @@
                     .success(successFn)
                     .error(failFn);
             }
-            /*_submitCredentials: function(successFn, failFn) {
-                //console.log("hit service");
-                setTimeout(function() {
-                    //console.log("success callback");
-                    successFn();
-                }, 2000);
-            }*/
         }
     }]);
 
