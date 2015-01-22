@@ -55,6 +55,7 @@ body.row {
   padding: 10px;
 }
 .capture-comms-form {
+  display: none;
   box-sizing: border-box;
   position: absolute;
   top: 0;

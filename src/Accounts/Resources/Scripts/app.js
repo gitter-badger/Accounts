@@ -12,7 +12,7 @@
 
     }]);
 
-    app.controller("CompletionController", ['$scope', 'CredentialService', 'Model',  function ($scope, credentialService, model) {
+    app.controller("CompletionController", ['$scope', 'CredentialService', 'Model',  function ($scope, credentialService, viewModel) {
 
         $scope.awaitingServerResponse = false;
         $scope.passwordServerFail = false;
@@ -42,9 +42,9 @@
 
         var account = function() {
             return {
-                passwordSet:model.passwordSet,
-                primaryEmailExists: model.primaryEmailExists,
-                primaryPhoneExists: model.primaryPhoneExists,
+                passwordSet:viewModel.passwordSet,
+                primaryEmailExists: viewModel.primaryEmailExists,
+                primaryPhoneExists: viewModel.primaryPhoneExists,
                 updatedPassword: function() {
                     this.passwordSet = true;
                 }
