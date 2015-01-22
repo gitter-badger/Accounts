@@ -35,7 +35,9 @@
         };
 
         $scope.model = {
-            password:""
+            password:"",
+            email:"",
+            phone:""
         };
 
         var account = function() {
@@ -53,7 +55,7 @@
 
         $scope.updatePassword = function() {
             $scope.awaitingServerResponse = true;
-            credentialService.submitCredentials(
+            credentialService._submitCredentials(
                 $scope.model.password,
                 function() {
                     $scope.account.updatedPassword();
@@ -75,14 +77,9 @@
             } else if(!$scope.account.primaryEmailExists && $scope.account.primaryPhoneExists) {
                 $('#capture-email').addClass('bounceInDown');
             } else if(!$scope.account.primaryEmailExists && !$scope.account.primaryPhoneExists) {
-                $('#capture-all').addClass('bounceInDown');
+                $('#capture-email').addClass('bounceInDown');
             }
         };
-
-        $('#password-submit').on('click', function(e) {
-            e.preventDefault();
-            $scope.updatePassword();
-        });
 
     }]);
 
@@ -189,14 +186,14 @@
                 $http.post("UpdatePassword", { password: password })
                     .success(successFn)
                     .error(failFn);
-            }
-            /*_submitCredentials: function(successFn, failFn) {
+            },
+            _submitCredentials: function(password, successFn, failFn) {
                 //console.log("hit service");
                 setTimeout(function() {
                     //console.log("success callback");
                     successFn();
-                }, 2000);
-            }*/
+                }, 5000);
+            }
         }
     }]);
 

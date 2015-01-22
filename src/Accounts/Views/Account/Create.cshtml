@@ -8,7 +8,7 @@
         <a class="link-text right header" href="">Help!</a>
     </h1>
     <div class="content">
-        <form id="create-new-password" name="createNewPassword" method="post>
+        <form id="create-new-password" name="createNewPassword" method="post">
             <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
             <fieldset class="inner-content">
             <p class="content-text">
@@ -26,12 +26,21 @@
                 <hr class="divider">
                 <div class="form-wrapper">
                     <button id="password-submit" class="btn action" type="submit"
+                            data-ng-click="updatePassword()"
+                            data-ng-class="{'loading':awaitingServerResponse}"
                             data-ng-disabled="!passwordValidity.isValid() || isFormDisabled()">
-                        <span data-ng-if="!awaitingServerResponse">Continue</span>
-                        <span data-ng-if="awaitingServerResponse">Setting your password</span>
+                        <span ng-if="!awaitingServerResponse">Continue</span>
+                        <span ng-if="awaitingServerResponse">Setting your new password...</span>
+                        <div ng-if="awaitingServerResponse" class="loader spinner">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
                     </button>
                 </div>
-                <div loader-wrap data-ng-show="awaitingServerResponse" class="loader-wrap" data-loadertext="setting your new password..." ng-cloak></div>
+                <!--<div loader-wrap data-ng-show="awaitingServerResponse" class="loader-wrap" data-loadertext="setting your new password..." ng-cloak></div>-->
             </fieldset>
         </form>
         <form id="capture-email" name="captureEmail" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
@@ -76,7 +85,7 @@
 </div>
 
 @section scripts {
-<script src="../Resources/Scripts/angular.1.2.13.js"></script>
+<script src="../Resources/Scripts/angular.min.js"></script>
 <script src="../Resources/Scripts/lodash.min.js"></script>
 <script src="../Resources/Scripts/app.js"></script>
 }
