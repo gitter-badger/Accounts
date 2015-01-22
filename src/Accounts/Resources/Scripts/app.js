@@ -43,8 +43,8 @@
         var account = function() {
             return {
                 passwordSet:model.passwordSet,
-                primaryEmailExists:false,
-                primaryPhoneExists:false,
+                primaryEmailExists: model.primaryEmailExists,
+                primaryPhoneExists: model.primaryPhoneExists,
                 updatedPassword: function() {
                     this.passwordSet = true;
                 }

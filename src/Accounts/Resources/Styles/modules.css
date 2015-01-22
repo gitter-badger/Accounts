@@ -55,7 +55,6 @@ body.row {
   padding: 10px;
 }
 .capture-comms-form {
-  display: none;
   box-sizing: border-box;
   position: absolute;
   top: 0;
@@ -167,14 +166,17 @@ body.row {
 }
 /* BUTTONS & INPUTS & INTERACTONS */
 .btn {
+  position: relative;
   max-width: 25%;
+  min-width: 120px;
   width: 100%;
   height: 50px;
+  padding: 16px;
   border-radius: 3px;
   border: none;
   color: #fff;
   margin-top: 20px;
-  min-width: 120px;
+  text-align: center;
 }
 .btn.action {
   background-color: #0e7d07;
@@ -184,6 +186,17 @@ body.row {
 }
 .btn.action:disabled {
   background-color: #a9a9a9;
+}
+.btn.loading {
+  max-width: 100%;
+  width: auto;
+  padding-right: 62px;
+}
+.btn.loading .loader {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 30px;
 }
 .input {
   box-sizing: border-box;
@@ -288,18 +301,17 @@ input#password[type="text"] + .unmask {
   padding: 0;
   width: 100%;
   overflow: auto;
-  opacity: 1;
-  transition: opacity 5s ease-in-out;
 }
 .password-validation li {
   display: inline-block;
+  float: left;
   width: 24.25%;
+  height: 90px;
   background-color: #eee;
   text-align: center;
-  float: left;
   margin-right: 1%;
-  height: 90px;
   font-size: 12px;
+  transition: opacity .4s linear;
 }
 .password-validation li:nth-child(4) {
   margin-right: 0;
@@ -309,11 +321,8 @@ input#password[type="text"] + .unmask {
   display: block;
   margin-top: 10px;
 }
-.password-validation .invalid {
-  color: #444;
-}
-.password-validation .valid {
-  opacity: 0.5;
+.password-validation li.valid {
+  opacity: 0.15;
 }
 /* RESPONSIVE STYLING */
 /* PASSWORD VALIDATION */
@@ -346,50 +355,6 @@ input#password[type="text"] + .unmask {
   .inner-content {
     margin: 0;
   }
-  /* ANIMATIONS */
-  .animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
-  @-webkit-keyframes bounceInDown {
-    0% {
-      opacity: 0;
-      -webkit-transform: translateY(-2000px);
-    }
-    60% {
-      opacity: 1;
-      -webkit-transform: translateY(20px);
-    }
-    80% {
-      -webkit-transform: translateY(-10px);
-    }
-    100% {
-      -webkit-transform: translateY(0);
-    }
-  }
-  @keyframes bounceInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-2000px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(20px);
-    }
-    80% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  .bounceInDown {
-    display: block!important;
-    -webkit-animation-name: bounceInDown;
-    animation-name: bounceInDown;
-  }
   .page-header {
     padding-right: 70px;
     margin-bottom: 20px;
@@ -411,6 +376,11 @@ input#password[type="text"] + .unmask {
   .icon.email,
   .icon.phone {
     display: none;
+  }
+  .icon-text,
+  .input.label-heading {
+    margin: 0;
+    font-size: 0.9em;
   }
   .form-wrapper.coloured-box {
     height: 30px;
@@ -462,36 +432,18 @@ input#password[type="text"] + .unmask {
   -webkit-animation-name: bounceInDown;
   animation-name: bounceInDown;
 }
-.loader-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -100px 0 0 -120px;
-  background: #fff;
-  width: 240px;
-  height: 100px;
-  border: solid 1px #ccc;
-  box-shadow: 0 10px 20px -10px #000000;
-}
-.loader-wrap .loader {
-  margin: 23px auto 14px;
-  width: 110px;
+.loader {
+  width: 100px;
   height: 30px;
+  margin: 0;
   text-align: center;
-  font-size: 10px;
-}
-.loader-wrap p {
-  margin: 10px auto;
-  color: #444;
-  text-align: center;
-  font-size: 14px;
 }
 .spinner > div {
+  float: left;
   background-color: #333;
   height: 100%;
-  width: 20px;
+  width: 4px;
   margin: 0 1px;
-  display: inline-block;
   -webkit-animation: stretchdelay 1.2s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
   animation: stretchdelay 1.2s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }

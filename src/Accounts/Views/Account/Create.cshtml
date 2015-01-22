@@ -9,10 +9,9 @@
     </h1>
     <div class="content">
         <form id="create-new-password" name="createNewPassword" method="post">
-            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
             <fieldset class="inner-content">
-            <p class="content-text">
-                Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
+                <p class="content-text">
+                    Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
                 </p>
                 <div data-password-validator data-validity="passwordValidity" data-content="model.password"></div>
                 <div class="form-wrapper">
@@ -43,8 +42,9 @@
                 <!--<div loader-wrap data-ng-show="awaitingServerResponse" class="loader-wrap" data-loadertext="setting your new password..." ng-cloak></div>-->
             </fieldset>
         </form>
-        <form id="capture-email" name="captureEmail" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
-            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+        <form id="capture-email" name="captureEmail" method="post" class="capture-comms-form animated inner-content"
+              data-ng-show="!account.primaryEmailExists"
+              data-ng-if="account.passwordSet && !account.primaryEmailExists">
             <h3 class="subheading">We have noticed that we don't have your email address.</h3>
             <p class="content-text">
                 Once you've started using RewardHub we'll use your email to communicate with you regarding your account activity and to assist you, should you need to reset your password.
@@ -59,8 +59,9 @@
                 <a class="link-text right" href="">No thanks, sign me in</a>
             </div>
         </form>
-        <form id="capture-phone" name="capturePhone" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
-            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+        <form id="capture-phone" name="capturePhone" method="post" class="capture-comms-form animated inner-content"
+              data-ng-show="!account.primaryPhoneExists"
+              data-ng-if="account.passwordSet && !account.primaryPhoneExists">
             <p class="content-text">
                 Losing access to your account can be a frustrating experience so we have created a simple and east way for you to
                 <span class="bold-text">reset your password using text message</span> (SMS). All you need to do is provide us with your
@@ -84,7 +85,7 @@
 </div>
 
 <div id="modelJson">
-    @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.None, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() }));
+    @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.None, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() }))
 </div>
 
 @section scripts {
