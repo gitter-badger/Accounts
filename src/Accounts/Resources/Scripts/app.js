@@ -51,8 +51,8 @@
 
         $scope.updatePassword = function() {
             $scope.awaitingServerResponse = true;
-            //console.log($scope.awaitingServerResponse);
-            credentialService._submitCredentials(
+            credentialService.submitCredentials(
+                $scope.model.password,
                 function() {
                     $scope.account.updatedPassword();
                     $scope.awaitingServerResponse = false;
@@ -198,8 +198,8 @@
 
     app.service("CredentialService", ['$http', function ($http) {
         return {
-            submitCredentials: function (successFn, failFn) {
-                $http.get("url")
+            submitCredentials: function (password, successFn, failFn) {
+                $http.post("UpdatePassword", { password: password })
                     .success(successFn)
                     .error(failFn);
             },

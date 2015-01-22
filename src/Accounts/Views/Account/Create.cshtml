@@ -16,7 +16,7 @@
                 </p>
                 <div data-password-validator data-validity="passwordValidity" data-content="model.password"></div>
                 <div class="form-wrapper">
-                <label for="password" class="input label-heading">New password</label>
+                    <label for="password" class="input label-heading">New password:</label>
                     <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password"
                            data-ng-required="true"
                            data-ng-model="model.password"
@@ -82,12 +82,14 @@
             <hr class="divider">
             <div class="form-wrapper">
                 <button id="submit" class="btn action" ng-disabled="form.$invalid">Continue</button>
-                <a class="link-text right" href="">No thanks, sign me in</a>
+                <a class="link-text right" href="" id="skip-capture">No thanks, sign me in</a>
             </div>
         </form>
+        <div>
+        </div>
+
     </div>
 </div>
-
 
 @section scripts {
 <script src="../Resources/Scripts/angular.1.2.13.js"></script>
