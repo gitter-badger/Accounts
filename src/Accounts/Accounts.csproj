@@ -219,6 +219,8 @@
     <Content Include="Resources\Images\email-icon.png" />
     <Content Include="Resources\Images\email-sprite.png" />
     <Content Include="Resources\Images\eye-sprite.png" />
+    <Content Include="Resources\Images\lock-icon.png" />
+    <Content Include="Resources\Images\lock-sprite.png" />
     <Content Include="Resources\Images\mobile-sprite.png" />
     <Content Include="Resources\Images\password-sprite.png" />
     <Content Include="Resources\Images\phone-icon.png" />

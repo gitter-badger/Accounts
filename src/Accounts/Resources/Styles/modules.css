@@ -54,8 +54,7 @@ body.row {
   height: auto;
   padding: 10px;
 }
-.capture-comms-form {
-  display: none;
+.capture-comms {
   box-sizing: border-box;
   position: absolute;
   top: 0;
@@ -198,6 +197,11 @@ body.row {
   top: 10px;
   right: 15px;
   width: 30px;
+}
+a.btn {
+  box-sizing: border-box;
+  display: block;
+  text-decoration: none;
 }
 .input {
   box-sizing: border-box;
@@ -361,7 +365,7 @@ input#password[type="text"] + .unmask {
     margin-bottom: 20px;
   }
   .form-wrapper,
-  .capture-comms-form {
+  .capture-comms {
     padding: 0;
   }
   .form-wrapper.transparent-box {
