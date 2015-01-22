@@ -18,12 +18,14 @@
         $scope.passwordServerFail = false;
         $scope.passwordValidity = {
             minChars:false,
-            check: function() {
-                for (var key in this) {
-                    if (this.hasOwnProperty(key)) {
-                        //console.log(key + " -> " + this[key]);
+            isValid: function() {
+                var response = _.reduce(this, function(result, num, key) {
+                    if(typeof(num) != "function") {
+                        return result && num;
                     }
-                }
+                    return result;
+                }, true);
+                return response;
             }
         };
         $scope.isFormDisabled = function() {
@@ -182,10 +184,12 @@
                     } else {
                         scope.validity.specialChars = false;
                     }
+                    scope.validity.isValid();
                 };
 
                 scope.$watch('content', function(newVal){
-                    checkValidity(newVal);
+                    if(newVal)
+                        checkValidity(newVal);
                 }, true);
             },
             template: html

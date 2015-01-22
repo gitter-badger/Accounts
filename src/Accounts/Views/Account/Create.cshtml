@@ -14,7 +14,7 @@
             <p class="content-text">
                 Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
                 </p>
-                <div data-password-validator data-validity="passwordValidation" data-content="model.password"></div>
+                <div data-password-validator data-validity="passwordValidity" data-content="model.password"></div>
                 <div class="form-wrapper">
                 <label for="password" class="input label-heading">New password</label>
                     <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password"
@@ -26,7 +26,7 @@
                 <hr class="divider">
                 <div class="form-wrapper">
                     <button id="password-submit" class="btn action" type="submit"
-                            data-ng-disabled="(createNewPassword.$invalid && validity) || isFormDisabled()">Continue</button>
+                            data-ng-disabled="!passwordValidity.isValid() || isFormDisabled()">Continue</button>
                 </div>
                 <div loader-wrap data-ng-show="awaitingServerResponse" class="loader-wrap" data-loadertext="setting your new password..." ng-cloak></div>
             </fieldset>
@@ -39,11 +39,11 @@
             </p>
             <div class="form-wrapper">
                 <label for="email" class="input label-heading">Enter your email address</label>
-                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.username">
+                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="">
             </div>
             <div class="form-wrapper">
                 <label for="mobile" class="input label-heading">Enter your mobile number</label>
-                <input required id="mobile" name="mobile" type="tel" class="input text mobile-icon" placeholder="Mobile number" ng-model="model.password">
+                <input required id="mobile" name="mobile" type="tel" class="input text mobile-icon" placeholder="Mobile number" ng-model="">
             </div>
             <hr class="divider">
             <div class="form-wrapper">
@@ -60,7 +60,7 @@
             </p>
             <div class="form-wrapper">
                 <label for="email" class="input label-heading">Enter your email address</label>
-                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.username">
+                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="">
             </div>
             <hr class="divider">
             <div class="form-wrapper">
@@ -77,7 +77,7 @@
             </p>
             <div class="form-wrapper">
                 <label for="email" class="input label-heading">Enter your mobile number</label>
-                <input required name="email" id="email" type="text" class="input text mobile-icon" placeholder="Enter your phone number" ng-model="model.username">
+                <input required name="email" id="email" type="text" class="input text mobile-icon" placeholder="Enter your phone number" ng-model="">
             </div>
             <hr class="divider">
             <div class="form-wrapper">
@@ -91,5 +91,6 @@
 
 @section scripts {
 <script src="../Resources/Scripts/angular.1.2.13.js"></script>
+<script src="../Resources/Scripts/lodash.min.js"></script>
 <script src="../Resources/Scripts/app.js"></script>
 }
