@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Reset";
+ViewBag.Title = "Reset";
 }
 
 <div class="container" id="forgotten-password">
@@ -14,7 +14,7 @@
             <h3 class="subheading">To reset your password we must send you a reset code.</h3>
             <p class="content-text">
                 Please enter your <span class="bold-text">Username, Employee ID or Email</span> so we can confirm that this account belongs to you.
-            </p>
+            </p><br>
 
             <div class="form-wrapper">
                 <label for="username" class="input label-heading">Enter you Username, Employee ID or email</label>
@@ -38,14 +38,15 @@
         <a class="link-text right header" href="">Help!</a>
     </h1>
 
-        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+    <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
-        <fieldset class="inner-content">
-            <h3 class="subheading">Thanks for confirming your account.</h3>
-            <p class="content-text">
-                How would you like to receive your reset code?
-            </p>
-            <form name="form" method="post" action="{{model.loginUrl}}">
+    <fieldset class="inner-content">
+        <h3 class="subheading">Thanks for confirming your account.</h3>
+        <p class="content-text">
+            How would you like to receive your reset code?
+        </p><br>
+
+        <form name="form" method="post" action="{{model.loginUrl}}">
 
             <div class="form-wrapper coloured-box">
                 <input required name="reset" id="mobile-code" type="radio" class="input radio">
@@ -56,15 +57,15 @@
                 <input required name="reset" id="email-code" type="radio" class="input radio">
                 <label for="email-code" class="input radio label-heading">Send a reset code to my email address</label>
             </div>
-            </form>
+        </form>
 
-            <hr class="divider">
+        <hr class="divider">
 
-            <div class="form-wrapper">
-                <button class="btn action" ng-disabled="form.$invalid">Send code</button>
-            </div>
+        <div class="form-wrapper">
+            <button class="btn action" ng-disabled="form.$invalid">Send code</button>
+        </div>
 
-        </fieldset>
+    </fieldset>
 </div>
 
 
@@ -179,7 +180,31 @@
     </form>
 </div>
 
-<div class="container" id=mobile-code-sign-in>
+<div class="container" id="wrong-reset-code">
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <h3 class="subheading">Oops! Sorry.</h3>
+            <p class="content-text">
+                <span class="bold-text">The code you entered is incorrect.</span><br>
+                Please try again.
+            </p>
+
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Try again</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<div class="container" id="mobile-code-sign-in">
     <h1 class="page-header">Please sign in
         <a class="link-text right header" href="">Help!</a>
     </h1>
@@ -209,7 +234,7 @@
     </form>
 </div>
 
-<div class="container" id=mobile-code-create-password>
+<div class="container" id="mobile-code-create-password">
     <h1 class="page-header">Forgotten your sign in details?
         <a class="link-text right header" href="">Help!</a>
     </h1>
@@ -217,11 +242,10 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-
+            <h3 class="subheading">A 6 digit reset code has been sent to your mobile phone.</h3>
             <p class="content-text">
-                <span class="bold-text">A 6 digit reset code has been sent to your mobile phone.</span><br>
                 Please use this code to create a new password.
-            </p>
+            </p><br>
 
             <div class="form-wrapper">
                 <label for="reset" class="input label-heading">Enter your reset code</label>
@@ -239,7 +263,7 @@
     </form>
 </div>
 
-<div class="container" id=email-code-create-password>
+<div class="container" id="email-code-create-password">
     <h1 class="page-header">Forgotten your sign in details?
         <a class="link-text right header" href="">Help!</a>
     </h1>
@@ -247,11 +271,10 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
-
+            <h3 class="subheading">A 6 digit reset code has been sent to [email address].</h3>
             <p class="content-text">
-                <span class="bold-text">A 6 digit reset code has been sent to [emailaddress].</span><br>
                 Please use this code to create a new password.
-            </p>
+            </p><br>
 
             <div class="form-wrapper">
                 <label for="reset" class="input label-heading">Enter your reset code</label>
@@ -268,7 +291,30 @@
         </fieldset>
     </form>
 </div>
+
+<div class="container" id="wrong-details-error">
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <p class="content-text">
+                Some of the details you entered are incorrect. Please verify your details and try again. If you need any help, feel free to <a href="">get in touch</a>.
+            </p><br>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Try again</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
 @section scripts {
-    <script src="~/Resources/Scripts/reset.js"></script>
+<script src="~/Resources/Scripts/reset.js"></script>
 }
 
