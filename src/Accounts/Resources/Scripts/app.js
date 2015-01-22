@@ -69,6 +69,20 @@
             );
         };
 
+        $scope.updateEmail = function() {
+            $scope.awaitingServerResponse = true;
+            credentialService.submitEmail(
+                $scope.model.email,
+                function() {
+                    $scope.awaitingServerResponse = false;
+                    console.log("SUCCESS");
+                },
+                function(e) {
+                    console.log("FAIL");
+                }
+            );
+        };
+
         var determineCommsRequest = function() {
             if($scope.account.primaryEmailExists && $scope.account.primaryPhoneExists) {
                 //we have all user's details, forward them to homepage
@@ -186,6 +200,14 @@
                 $http.post("UpdatePassword", { password: password })
                     .success(successFn)
                     .error(failFn);
+            },
+            submitEmail: function(email, successFn, failFn) {
+                setTimeout(function() {
+                    successFn()
+                }, 4000);
+                /*$http.post("UpdateContactDetails", { email:email })
+                    .success(successFn)
+                    .error(failFn);*/
             }
         }
     }]);
