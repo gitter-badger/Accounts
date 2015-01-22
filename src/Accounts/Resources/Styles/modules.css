@@ -418,3 +418,121 @@ input#password[type="text"] + .unmask {
   }
 }
 /* END OF RESPONSIVE STYLING */
+/* ANIMATIONS */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateY(20px);
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(20px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.bounceInDown {
+  display: block!important;
+  -webkit-animation-name: bounceInDown;
+  animation-name: bounceInDown;
+}
+.loader-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -120px;
+  background: #fff;
+  width: 240px;
+  height: 100px;
+  border: solid 1px #ccc;
+  box-shadow: 0 10px 20px -10px #000000;
+}
+.loader-wrap .loader {
+  margin: 23px auto 14px;
+  width: 110px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+}
+.loader-wrap p {
+  margin: 10px auto;
+  color: #444;
+  text-align: center;
+  font-size: 14px;
+}
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 20px;
+  margin: 0 1px;
+  display: inline-block;
+  -webkit-animation: stretchdelay 1.2s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  animation: stretchdelay 1.2s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+.spinner .rect3 {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+@-webkit-keyframes stretchdelay {
+  0%,
+  70%,
+  100% {
+    -webkit-transform: scaleY(0.4);
+    opacity: 0.5;
+  }
+  35% {
+    -webkit-transform: scaleY(1);
+    opacity: 1;
+  }
+}
+@keyframes stretchdelay {
+  0%,
+  70%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+    opacity: 0.5;
+  }
+  35% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+  }
+}
