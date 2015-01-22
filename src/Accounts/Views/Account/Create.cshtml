@@ -76,7 +76,7 @@
                 <a class="link-text right" href="" id="skip-capture">No thanks, sign me in</a>
             </div>
         </form>
-        <form id="password-error" name="capturePhone" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
+        <form id="password-error" name="capturePhone" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content" data-ng-hide="true" >
             <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
                 <p class="content-text">
                     In order to keep your account secure please choose a password that you haven't used previously.
