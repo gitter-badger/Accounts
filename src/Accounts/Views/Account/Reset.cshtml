@@ -74,9 +74,41 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
+
+            <h3 class="subheading">A code has been sent to [mobile number].</h3>
             <p class="content-text">
-                <span class="bold-text">A 6 digit reset code  has been sent to your mobile phone.</span><br>
-                Please use this code to create a new password.
+                <span class="bold-text">Complete verification by visiting the <a href="">'about me'</a> page to input your code.</span><br>
+                Please be aware that this code will expire within [_ hours]. If your mobile number is not verified it cannot be used.
+            </p>
+
+            <div class="form-wrapper">
+                <label for="reset" class="input label-heading">Your security code</label>
+                <input required name="reset" id="reset" type="text" class="input text reset-icon" placeholder="Enter your code" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <a class="link-text right" href="">I haven't received my code</a>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<div class="container" id="enter-code-email">
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <h3 class="subheading">A code has been sent to [email address].</h3>
+            <p class="content-text">
+                <span class="bold-text">Please use the link within the email to verify the address you supplied.</span><br>
+                The verification link will expire within [_ hours]. If your link expires you will need to request another code.
             </p>
 
             <div class="form-wrapper">
@@ -108,13 +140,67 @@
             <h3 class="subheading">Haven't received your reset code yet?</h3>
             <p class="content-text">
                 <span class="bold-text">Please check that you are within network range!</span><br>
-                If you still don't receive your reset code within the next 10 minutes then please
+                If you still don't receive your reset code within the next few minutes then please
                 <a href="">get in touch</a></span> and we will do our best to assist you.
             </p>
 
 
             <div class="form-wrapper">
-                <button class="btn action" ng-disabled="form.$invalid">Back</button>
+                <button class="btn action" ng-disabled="form.$invalid">Ok, thanks</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<div class="container" id="details-not-found">
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <h3 class="subheading">Oops! Sorry.</h3>
+            <p class="content-text">
+                <span class="bold-text">These details do not seem to be registered on our system.</span><br>
+                Please try again.
+            </p>
+
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Try again</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<div class="container" id=mobile-code-sign-in>
+    <h1 class="page-header">Please sign in
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <p class="content-text">
+                <span class="bold-text">A 6 digit reset code has been sent to your registered mobile.</span><br>
+                Please use this code to sign in.
+            </p>
+
+            <div class="form-wrapper">
+                <label for="reset" class="input label-heading">Your security code</label>
+                <input required name="reset" id="reset" type="text" class="input text reset-icon" placeholder="Enter your code" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <a class="link-text right" href="">I haven't received my code</a>
             </div>
 
         </fieldset>
