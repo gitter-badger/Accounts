@@ -35,9 +35,10 @@
         };
 
         $scope.model = {
-            password:"",
-            email:"",
-            phone:""
+            password:null,
+            email:null,
+            phone:null,
+            submitted:false
         };
 
         var account = function() {
@@ -65,6 +66,21 @@
                 function() {
                     $scope.awaitingServerResponse = false;
                     //console.log("password failure response from server.");
+                }
+            );
+        };
+
+        $scope.updateContactDetails = function() {
+            $scope.awaitingServerResponse = true;
+            credentialService.submitContactDetails(
+                $scope.model.email,
+                $scope.model.phone,
+                function() {
+                    $scope.awaitingServerResponse = false;
+                    $scope.model.submitted = true;
+                },
+                function(e) {
+                    console.log("FAIL");
                 }
             );
         };
@@ -184,6 +200,11 @@
         return {
             submitCredentials: function (password, successFn, failFn) {
                 $http.post("UpdatePassword", { password: password })
+                    .success(successFn)
+                    .error(failFn);
+            },
+            submitContactDetails: function(email, phone, successFn, failFn) {
+                $http.post("UpdateContactDetails", { email:email, phone:phone })
                     .success(successFn)
                     .error(failFn);
             }
