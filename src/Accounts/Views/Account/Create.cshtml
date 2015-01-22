@@ -26,7 +26,10 @@
                 <hr class="divider">
                 <div class="form-wrapper">
                     <button id="password-submit" class="btn action" type="submit"
-                            data-ng-disabled="!passwordValidity.isValid() || isFormDisabled()">Continue</button>
+                            data-ng-disabled="!passwordValidity.isValid() || isFormDisabled()">
+                        <span data-ng-if="!awaitingServerResponse">Continue</span>
+                        <span data-ng-if="awaitingServerResponse">Setting your password</span>
+                    </button>
                 </div>
                 <div loader-wrap data-ng-show="awaitingServerResponse" class="loader-wrap" data-loadertext="setting your new password..." ng-cloak></div>
             </fieldset>

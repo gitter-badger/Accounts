@@ -114,13 +114,29 @@ body { background: url("../Images/bg_main.jpg") no-repeat fixed; background-size
 input#password[type="text"] + .unmask { background-position: 0 -45px;}
 
 /* PASSWORD VALIDATION */
-.password-validation { margin: 0 0 20px 0; padding: 0; width: 100%; overflow: auto; opacity: 1; transition: opacity 5s ease-in-out;
-  li { display: inline-block; width: 24.25%; background-color: #eee; text-align: center; float: left; margin-right: 1%; height: 90px; font-size: 12px;
-    &:nth-child(4) { margin-right: 0; }
-    span { font-size:30px; display: block; margin-top: 10px; }
+.password-validation { margin: 0 0 20px 0; padding: 0; width: 100%; overflow: auto;
+  li {
+    display: inline-block;
+    float: left;
+    width: 24.25%;
+    height: 90px;
+    background-color: #eee;
+    text-align: center;
+    margin-right: 1%;
+    font-size: 12px;
+    transition: opacity .4s linear;
+    &:nth-child(4) {
+      margin-right: 0;
+    }
+    span {
+      font-size: 30px;
+      display: block;
+      margin-top: 10px;
+    }
+    &.valid {
+      opacity: 0.15;
+    }
   }
-  .invalid { color:#444; }
-  .valid { opacity: 0.5; }
 }
 
 
@@ -150,8 +166,7 @@ input#password[type="text"] + .unmask { background-position: 0 -45px;}
 
   .page-header { padding-right: 70px; margin-bottom: 20px; }
 
-
-  .form-wrapper {
+  .form-wrapper, .capture-comms-form {
     padding: 0;
   }
 
@@ -264,31 +279,7 @@ input#password[type="text"] + .unmask { background-position: 0 -45px;}
   0%, 70%, 100% { transform: scaleY(0.4); -webkit-transform: scaleY(0.4); opacity: 0.5; }
   35% { transform: scaleY(1.0); -webkit-transform: scaleY(1.0); }
 }
-  .page-header { padding-right: 70px; margin-bottom: 20px; }
 
-
-  .form-wrapper, .capture-comms-form {
-    padding: 0;
-  }
-
-  .form-wrapper.transparent-box {
-    padding: 10px 0;
-  }
-
-  .login-fail-message {
-    width: 100%;
-    padding: 0;
-  }
-
-  .timer-wrap {
-    margin: 15px 0 15px 20%;
-  }
-
-  .icon.email, .icon.phone { display: none;}
-//  .icon-text, .input.label-heading { margin:0; font-size: 0.9em; }
-  .form-wrapper.coloured-box { height: 30px; padding: 20px 10px 10px 10px;}
-}
-/* END OF RESPONSIVE STYLING */
 
 
 
