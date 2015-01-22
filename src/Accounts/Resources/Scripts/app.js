@@ -35,9 +35,10 @@
         };
 
         $scope.model = {
-            password:"",
-            email:"",
-            phone:""
+            password:null,
+            email:null,
+            phone:null,
+            submitted:false
         };
 
         var account = function() {
@@ -69,13 +70,14 @@
             );
         };
 
-        $scope.updateEmail = function() {
+        $scope.updateContactDetails = function() {
             $scope.awaitingServerResponse = true;
-            credentialService.submitEmail(
+            credentialService.submitContactDetails(
                 $scope.model.email,
+                $scope.model.phone,
                 function() {
                     $scope.awaitingServerResponse = false;
-                    console.log("SUCCESS");
+                    $scope.model.submitted = true;
                 },
                 function(e) {
                     console.log("FAIL");
@@ -201,10 +203,10 @@
                     .success(successFn)
                     .error(failFn);
             },
-            submitEmail: function(email, successFn, failFn) {
+            submitContactDetails: function(email, phone, successFn, failFn) {
                 setTimeout(function() {
                     successFn()
-                }, 4000);
+                }, 1000);
                 /*$http.post("UpdateContactDetails", { email:email })
                     .success(successFn)
                     .error(failFn);*/

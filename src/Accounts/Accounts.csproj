@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IdentityModel.Protocol.Extensions">
       <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.0\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
@@ -222,6 +219,8 @@
     <Content Include="Resources\Images\email-icon.png" />
     <Content Include="Resources\Images\email-sprite.png" />
     <Content Include="Resources\Images\eye-sprite.png" />
+    <Content Include="Resources\Images\lock-icon.png" />
+    <Content Include="Resources\Images\lock-sprite.png" />
     <Content Include="Resources\Images\mobile-sprite.png" />
     <Content Include="Resources\Images\password-sprite.png" />
     <Content Include="Resources\Images\phone-icon.png" />
@@ -231,6 +230,7 @@
     <Content Include="Resources\Scripts\angular.min.js" />
     <Content Include="Resources\Scripts\app.js" />
     <Content Include="Resources\Scripts\jquery-1.11.0.js" />
+    <Content Include="Resources\Scripts\lodash.min.js" />
     <Content Include="Resources\Scripts\password-validation.js" />
     <Content Include="Resources\Scripts\reset.js" />
     <Content Include="Resources\Styles\modules.css" />
