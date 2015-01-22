@@ -8,54 +8,31 @@
         <a class="link-text right header" href="">Help!</a>
     </h1>
     <div class="content">
-        <form id="create-new-password" name="createNewPassword" >
+        <form id="create-new-password" name="createNewPassword" method="post>
             <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
             <fieldset class="inner-content">
             <p class="content-text">
                 Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
                 </p>
-                <ul class="password-validation">
-                    <li id="specialCharacter" class="invalid"><span>*!£^</span><p>A symbol</p></li>
-                    <li id="number" class="invalid"><span>3</span><p>A number</p></li>
-                    <li id="letter" class="invalid"><span>Aa</span><p>Upper / lower case</p></li>
-                    <li id="length" class="invalid"><span>8+</span><p>8 characters long</p></li>
-                </ul>
+                <div data-password-validator data-validity="passwordValidity" data-content="model.password"></div>
                 <div class="form-wrapper">
                     <label for="password" class="input label-heading">New password:</label>
                     <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password"
                            data-ng-required="true"
                            data-ng-model="model.password"
-                           data-ng-disabled="formDisabled"
-                           data-ng-keyup="test()">
-                    <button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
+                           data-ng-disabled="isFormDisabled()">
+                    <button password-mask-control class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
                 </div>
                 <hr class="divider">
                 <div class="form-wrapper">
                     <button id="password-submit" class="btn action" type="submit"
-                            data-ng-disabled="createNewPassword.$invalid || formDisabled">Continue</button>
+                            data-ng-disabled="!passwordValidity.isValid() || isFormDisabled()">
+                        <span data-ng-if="!awaitingServerResponse">Continue</span>
+                        <span data-ng-if="awaitingServerResponse">Setting your password</span>
+                    </button>
                 </div>
+                <div loader-wrap data-ng-show="awaitingServerResponse" class="loader-wrap" data-loadertext="setting your new password..." ng-cloak></div>
             </fieldset>
-        </form>
-        <form id="capture-all" name="captureAll" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
-            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
-            <p class="content-text">
-                To ensure you can get back into your account quickly and securely please provide either your email address or mobile number.
-                <span class="bold-text">We recommend you provide both.</span>
-            </p>
-            <div class="form-wrapper">
-                <label for="email" class="input label-heading">Enter your email address</label>
-                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.username">
-            </div>
-            <div class="form-wrapper">
-                <label for="mobile" class="input label-heading">Enter your mobile number</label>
-                <input required id="mobile" name="mobile" type="tel" class="input text mobile-icon" placeholder="Mobile number" ng-model="model.password">
-            </div>
-            <hr class="divider">
-            <div class="form-wrapper">
-                <button id="submit" class="btn action" ng-disabled="form.$invalid">Login</button>
-                <a class="link-text right" href="">No thanks, sign me in</a>
-
-            </div>
         </form>
         <form id="capture-email" name="captureEmail" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
             <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
@@ -66,11 +43,11 @@
             </p>
             <div class="form-wrapper">
                 <label for="email" class="input label-heading">Enter your email address</label>
-                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.username">
+                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.email">
             </div>
             <hr class="divider">
             <div class="form-wrapper">
-                <button id="submit" class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <button id="submit-email" class="btn action" ng-disabled="captureEmail.$invalid">Continue</button>
                 <a class="link-text right" href="">No thanks, sign me in</a>
             </div>
         </form>
@@ -83,11 +60,11 @@
             </p>
             <div class="form-wrapper">
                 <label for="email" class="input label-heading">Enter your mobile number</label>
-                <input required name="email" id="email" type="text" class="input text mobile-icon" placeholder="Enter your phone number" ng-model="model.username">
+                <input required name="phone" id="phone" type="text" class="input text mobile-icon" placeholder="Enter your phone number" ng-model="model.phone">
             </div>
             <hr class="divider">
             <div class="form-wrapper">
-                <button id="submit" class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <button id="submit-phone" class="btn action" ng-disabled="capturePhone.$invalid">Continue</button>
                 <a class="link-text right" href="" id="skip-capture">No thanks, sign me in</a>
             </div>
         </form>
@@ -100,6 +77,6 @@
 
 @section scripts {
 <script src="../Resources/Scripts/angular.1.2.13.js"></script>
+<script src="../Resources/Scripts/lodash.min.js"></script>
 <script src="../Resources/Scripts/app.js"></script>
-<script src="../Resources/Scripts/password-validation.js"></script>
 }
