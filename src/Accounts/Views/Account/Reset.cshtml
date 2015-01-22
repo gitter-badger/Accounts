@@ -11,9 +11,10 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
+            <h3 class="subheading">To reset your password we must send you a reset code.</h3>
             <p class="content-text">
-                <span class="bold-text">To reset your password we will need to send you a reset code.</span> Please enter your <span class="bold-text">Username, Employee ID or Email</span> so we can confirm that this account belongs to you.
-            </p>
+                Please enter your <span class="bold-text">Username, Employee ID or Email</span> so we can confirm that this account belongs to you.
+            </p><br>
 
             <div class="form-wrapper">
                 <label for="username" class="input label-heading">Enter you Username, Employee ID or email</label>
@@ -40,9 +41,11 @@
         <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
 
         <fieldset class="inner-content">
+            <h3 class="subheading">Thanks for confirming your account.</h3>
             <p class="content-text">
-                <span class="bold-text">Thanks for confirming your account.</span><br>How would you like to receive your reset code?
-            </p>
+                How would you like to receive your reset code?
+            </p><br>
+
             <form name="form" method="post" action="{{model.loginUrl}}">
 
             <div class="form-wrapper coloured-box">
@@ -193,6 +196,64 @@
 
             <div class="form-wrapper">
                 <label for="reset" class="input label-heading">Your security code</label>
+                <input required name="reset" id="reset" type="text" class="input text reset-icon" placeholder="Enter your code" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <a class="link-text right" href="">I haven't received my code</a>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<div class="container" id=mobile-code-create-password>
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <h3 class="subheading">A 6 digit reset code has been sent to your mobile phone.</h3>
+            <p class="content-text">
+                Please use this code to create a new password.
+            </p><br>
+
+            <div class="form-wrapper">
+                <label for="reset" class="input label-heading">Enter your reset code</label>
+                <input required name="reset" id="reset" type="text" class="input text reset-icon" placeholder="Enter your code" ng-model="model.username">
+            </div>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Continue</button>
+                <a class="link-text right" href="">I haven't received my code</a>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<div class="container" id=email-code-create-password>
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <h3 class="subheading">A 6 digit reset code has been sent to [email address].</h3>
+            <p class="content-text">
+                Please use this code to create a new password.
+            </p><br>
+
+            <div class="form-wrapper">
+                <label for="reset" class="input label-heading">Enter your reset code</label>
                 <input required name="reset" id="reset" type="text" class="input text reset-icon" placeholder="Enter your code" ng-model="model.username">
             </div>
 
