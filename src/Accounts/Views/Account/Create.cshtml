@@ -47,7 +47,7 @@
               data-ng-if="account.passwordSet && !account.primaryEmailExists">
             <h3 class="subheading">We have noticed that we don't have your email address.</h3>
             <p class="content-text">
-                Once you've started using RewardHub we'll use your email to communicate with you regarding your account activity and to assist you, should you need to reset your password.
+                Providing your email address will allow us to communicate with you regarding your account activity and assist you should you need to reset your password.
             </p>
             <div class="form-wrapper">
                 <label for="email" class="input label-heading">Enter your email address</label>
@@ -56,7 +56,6 @@
             <hr class="divider">
             <div class="form-wrapper">
                 <button id="submit-email" class="btn action" ng-disabled="captureEmail.$invalid">Continue</button>
-                <a class="link-text right" href="">No thanks, sign me in</a>
             </div>
         </form>
         <form id="capture-phone" name="capturePhone" method="post" class="capture-comms-form animated inner-content"
@@ -77,7 +76,17 @@
                 <a class="link-text right" href="" id="skip-capture">No thanks, sign me in</a>
             </div>
         </form>
+        <form id="password-error" name="capturePhone" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
+            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+                <p class="content-text">
+                    In order to keep your account secure please choose a password that you haven't used previously.
+                </p>
 
+                <hr class="divider">
+                <div class="form-wrapper">
+                    <button class="btn action" type="submit">Ok, thanks</button>
+                </div>
+            </form>
         <div>
         </div>
 

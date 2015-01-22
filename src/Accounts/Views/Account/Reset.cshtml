@@ -180,7 +180,31 @@
     </form>
 </div>
 
-<div class="container" id=mobile-code-sign-in>
+<div class="container" id="wrong-reset-code">
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+
+            <h3 class="subheading">Oops! Sorry.</h3>
+            <p class="content-text">
+                <span class="bold-text">The code you entered is incorrect.</span><br>
+                Please try again.
+            </p>
+
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Try again</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<div class="container" id="mobile-code-sign-in">
     <h1 class="page-header">Please sign in
         <a class="link-text right header" href="">Help!</a>
     </h1>
@@ -210,7 +234,7 @@
     </form>
 </div>
 
-<div class="container" id=mobile-code-create-password>
+<div class="container" id="mobile-code-create-password">
     <h1 class="page-header">Forgotten your sign in details?
         <a class="link-text right header" href="">Help!</a>
     </h1>
@@ -239,7 +263,7 @@
     </form>
 </div>
 
-<div class="container" id=email-code-create-password>
+<div class="container" id="email-code-create-password">
     <h1 class="page-header">Forgotten your sign in details?
         <a class="link-text right header" href="">Help!</a>
     </h1>
@@ -262,6 +286,28 @@
             <div class="form-wrapper">
                 <button class="btn action" ng-disabled="form.$invalid">Continue</button>
                 <a class="link-text right" href="">I haven't received my code</a>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<div class="container" id="wrong-details-error">
+    <h1 class="page-header">Forgotten your sign in details?
+        <a class="link-text right header" href="">Help!</a>
+    </h1>
+    <form name="form" method="post" action="{{model.loginUrl}}">
+        <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+
+        <fieldset class="inner-content">
+            <p class="content-text">
+                Some of the details you entered are incorrect. Please verify your details and try again. If you need any help, feel free to <a href="">get in touch</a>.
+            </p><br>
+
+            <hr class="divider">
+
+            <div class="form-wrapper">
+                <button class="btn action" ng-disabled="form.$invalid">Try again</button>
             </div>
 
         </fieldset>
