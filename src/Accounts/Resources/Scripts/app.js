@@ -204,12 +204,9 @@
                     .error(failFn);
             },
             submitContactDetails: function(email, phone, successFn, failFn) {
-                setTimeout(function() {
-                    successFn()
-                }, 1000);
-                /*$http.post("UpdateContactDetails", { email:email })
+                $http.post("UpdateContactDetails", { email:email, phone:phone })
                     .success(successFn)
-                    .error(failFn);*/
+                    .error(failFn);
             }
         }
     }]);
