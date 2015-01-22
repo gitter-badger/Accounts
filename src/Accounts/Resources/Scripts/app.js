@@ -18,6 +18,9 @@
         $scope.passwordServerFail = false;
         $scope.passwordValidity = {
             minChars:false,
+            specialChars:false,
+            capsUsed:false,
+            numUsed:false,
             isValid: function() {
                 return _.reduce(this, function(result, num) {
                     if(typeof(num) != "function") {
@@ -32,7 +35,9 @@
         };
 
         $scope.model = {
-            password:""
+            password:"",
+            email:"",
+            phone:""
         };
 
         var account = function() {
@@ -72,14 +77,9 @@
             } else if(!$scope.account.primaryEmailExists && $scope.account.primaryPhoneExists) {
                 $('#capture-email').addClass('bounceInDown');
             } else if(!$scope.account.primaryEmailExists && !$scope.account.primaryPhoneExists) {
-                $('#capture-all').addClass('bounceInDown');
+                $('#capture-email').addClass('bounceInDown');
             }
         };
-
-        $('#password-submit').on('click', function(e) {
-            e.preventDefault();
-            $scope.updatePassword();
-        });
 
     }]);
 
@@ -157,38 +157,23 @@
                 "validity":"=",
                 "content":"="
             },
-            link: function(scope,element,attrs) {
+            link: function(scope) {
                 var checkValidity = function(pswd) {
 
-                    if (pswd.length >= 8 ) { //validate the length
-                        scope.validity.minChars = true;
-                    } else {
-                        scope.validity.minChars = false;
-                    }
+                    scope.validity.minChars = pswd.length >= 8;
 
-                    if (pswd.match(/[a-z].*[A-Z]|[A-Z].*[a-z]/) ) { //validate capital letter
-                        scope.validity.capsUsed = true;
-                    } else {
-                        scope.validity.capsUsed = false;
-                    }
+                    scope.validity.capsUsed = pswd.match(/[a-z].*[A-Z]|[A-Z].*[a-z]/);
 
-                    if (pswd.match(/\d/) ) { //validate number
-                        scope.validity.numUsed = true;
-                    } else {
-                        scope.validity.numUsed = false;
-                    }
+                    scope.validity.numUsed = pswd.match(/\d/);
 
-                    if (pswd.match(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/)) { //validate special characters
-                        scope.validity.specialChars = true;
-                    } else {
-                        scope.validity.specialChars = false;
-                    }
+                    scope.validity.specialChars = pswd.match(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/);
+
                     scope.validity.isValid();
                 };
 
                 scope.$watch('content', function(newVal){
-                    if(newVal)
-                        checkValidity(newVal);
+                    if(!newVal) newVal = "";
+                    checkValidity(newVal);
                 }, true);
             },
             template: html
@@ -201,13 +186,6 @@
                 $http.post("UpdatePassword", { password: password })
                     .success(successFn)
                     .error(failFn);
-            },
-            _submitCredentials: function(successFn, failFn) {
-                //console.log("hit service");
-                setTimeout(function() {
-                    //console.log("success callback");
-                    successFn();
-                }, 2000);
             }
         }
     }]);
