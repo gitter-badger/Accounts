@@ -19,13 +19,12 @@
         $scope.passwordValidity = {
             minChars:false,
             isValid: function() {
-                var response = _.reduce(this, function(result, num, key) {
+                return _.reduce(this, function(result, num) {
                     if(typeof(num) != "function") {
                         return result && num;
                     }
                     return result;
                 }, true);
-                return response;
             }
         };
         $scope.isFormDisabled = function() {
@@ -60,7 +59,7 @@
                 },
                 function() {
                     $scope.awaitingServerResponse = false;
-                    console.log("password failure response from server.");
+                    //console.log("password failure response from server.");
                 }
             );
         };
@@ -86,7 +85,7 @@
 
     app.directive("loaderWrap", function() {
         function link(scope, element, attrs) {
-            scope.loaderText = attrs.loadertext;
+            scope.loadertext = attrs.loadertext;
             if(element.is(":visible"))
                 element.children('.loader').addClass('spinner');
             else
@@ -94,13 +93,13 @@
         }
         return {
             link: link,
-            template: '<div class="loader"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><p>{{loaderText}}</p>'
+            template: '<div class="loader"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><p>{{loadertext}}</p>'
         }
     });
 
     app.directive("passwordMaskControl", function() {
 
-        function link(scope, element, attrs) {
+        function link() {
 
             function changeType(x, type) {
                 if(x.prop('type') == type)
@@ -110,7 +109,7 @@
                 } catch(e) {
 
                     var html = $("<div>").append(x.clone()).html();
-                    var regex = /type=(\")?([^\"\s]+)(\")?/;
+                    var regex = /type=(")?([^"\s]+)(")?/;
                     var tmp = $(html.match(regex) == null ?
                         html.replace(">", ' type="' + type + '">') :
                         html.replace(regex, 'type="' + type + '"') );
@@ -204,10 +203,9 @@
                     .error(failFn);
             },
             _submitCredentials: function(successFn, failFn) {
-                console.log("hit service");
+                //console.log("hit service");
                 setTimeout(function() {
-                    console.log("success callback");
-
+                    //console.log("success callback");
                     successFn();
                 }, 2000);
             }
