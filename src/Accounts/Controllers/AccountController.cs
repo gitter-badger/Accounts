@@ -4,6 +4,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -124,10 +125,10 @@ namespace Accounts.Controllers
                     ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
                 });
 
-            var content = new StringContent(contactString);
+            var content = new StringContent(contactString, Encoding.UTF8, "application/json");
 
             var client = new HttpClient { BaseAddress = new Uri(EndPoints.IdentityApiAddress) };
-
+            
             // call sync
             var response = PatchAsync(client, "/users/" + subClaim.Value, content).Result;
             if (response.IsSuccessStatusCode)
@@ -152,7 +153,7 @@ namespace Accounts.Controllers
             return Json(new {success = false});
         }
 
-        async Task<HttpResponseMessage> PatchAsync(HttpClient client, string requestUri, HttpContent content)
+        Task<HttpResponseMessage> PatchAsync(HttpClient client, string requestUri, HttpContent content)
         {
             var method = new HttpMethod("PATCH");
 
@@ -161,7 +162,7 @@ namespace Accounts.Controllers
                 Content = content
             };
 
-            return await client.SendAsync(request);
+            return client.SendAsync(request);
         }
 
     }
