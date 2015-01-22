@@ -12,7 +12,7 @@
 
     }]);
 
-    app.controller("CompletionController", ['$scope', 'CredentialService',  function ($scope, credentialService) {
+    app.controller("CompletionController", ['$scope', 'CredentialService', 'Model',  function ($scope, credentialService, model) {
 
         $scope.awaitingServerResponse = false;
         $scope.passwordServerFail = false;
@@ -37,7 +37,7 @@
 
         var account = function() {
             return {
-                passwordSet:false,
+                passwordSet:model.passwordSet,
                 primaryEmailExists:false,
                 primaryPhoneExists:false,
                 updatedPassword: function() {
@@ -211,6 +211,14 @@
             }
         }
     }]);
-
 })();
 
+(function () {
+    try {
+        var json = document.getElementById("modelJson").textContent;
+        var model = JSON.parse(json);
+        angular.module("app").constant("Model", model);
+    } catch (e) {
+
+    }
+})();

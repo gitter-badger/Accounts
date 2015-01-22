@@ -15,10 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/accounts/resources/scripts/angular.1.2.13.js',
-      'tests/libs/angular-mocks.1.2.13.js',
+      'tests/libs/angular.js',
+      'tests/libs/angular-mocks.js',
       'src/accounts/resources/scripts/jquery-1.11.0.js',
-      'src/accounts/resources/scripts/*.js',
+      'src/accounts/resources/scripts/app.js',
       'tests/*.js'
     ],
 
