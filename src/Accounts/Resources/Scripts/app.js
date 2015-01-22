@@ -204,7 +204,7 @@
                     .error(failFn);
             },
             submitContactDetails: function(email, phone, successFn, failFn) {
-                $http.post("UpdateContactDetails", { email:email, phone:phone })
+                $http.post("UpdateContactDetails", { email:email, mobileNumber:phone })
                     .success(successFn)
                     .error(failFn);
             }
