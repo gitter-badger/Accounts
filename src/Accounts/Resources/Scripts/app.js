@@ -17,10 +17,7 @@
         $scope.awaitingServerResponse = false;
         $scope.passwordServerFail = false;
         $scope.passwordValidity = {
-            minChars:false,
-            specialChars:false,
-            capsUsed:false,
-            numUsed:false,
+            specialChars: "",
             isValid: function() {
                 return _.reduce(this, function(result, num) {
                     if(typeof(num) != "function") {
@@ -79,8 +76,8 @@
                     $scope.awaitingServerResponse = false;
                     $scope.model.submitted = true;
                 },
-                function(e) {
-                    console.log("FAIL");
+                function() {
+                    //console.log("FAIL");
                 }
             );
         };
@@ -113,7 +110,7 @@
         }
     });
 
-    app.directive("passwordMaskControl", function() {
+    app.directive("passwordMaskControl", [$timeout, function(timeout) {
 
         function link() {
 
@@ -142,7 +139,7 @@
                         }
                     }(events);
                     x.replaceWith(tmp);
-                    setTimeout(cb, 10);
+                    timeout(cb, 10);
                     return tmp;
                 }
             }
@@ -159,7 +156,7 @@
         return {
             link:link
         }
-    });
+    }]);
 
     app.directive("passwordValidator", function() {
         var html = '<ul class="password-validation">';
