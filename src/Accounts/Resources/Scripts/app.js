@@ -12,7 +12,7 @@
 
     }]);
 
-    app.controller("CompletionController", ['$scope', 'CredentialService',  function ($scope, credentialService) {
+    app.controller("CompletionController", ['$scope', 'CredentialService', 'Model',  function ($scope, credentialService, viewModel) {
 
         $scope.awaitingServerResponse = false;
         $scope.passwordServerFail = false;
@@ -35,16 +35,17 @@
         };
 
         $scope.model = {
-            password:"",
-            email:"",
-            phone:""
+            password:null,
+            email:null,
+            phone:null,
+            submitted:false
         };
 
         var account = function() {
             return {
-                passwordSet:false,
-                primaryEmailExists:false,
-                primaryPhoneExists:false,
+                passwordSet:viewModel.passwordSet,
+                primaryEmailExists: viewModel.primaryEmailExists,
+                primaryPhoneExists: viewModel.primaryPhoneExists,
                 updatedPassword: function() {
                     this.passwordSet = true;
                 }
@@ -65,6 +66,21 @@
                 function() {
                     $scope.awaitingServerResponse = false;
                     //console.log("password failure response from server.");
+                }
+            );
+        };
+
+        $scope.updateContactDetails = function() {
+            $scope.awaitingServerResponse = true;
+            credentialService.submitContactDetails(
+                $scope.model.email,
+                $scope.model.phone,
+                function() {
+                    $scope.awaitingServerResponse = false;
+                    $scope.model.submitted = true;
+                },
+                function(e) {
+                    console.log("FAIL");
                 }
             );
         };
@@ -186,9 +202,22 @@
                 $http.post("UpdatePassword", { password: password })
                     .success(successFn)
                     .error(failFn);
+            },
+            submitContactDetails: function(email, phone, successFn, failFn) {
+                $http.post("UpdateContactDetails", { email:email, mobileNumber:phone })
+                    .success(successFn)
+                    .error(failFn);
             }
         }
     }]);
-
 })();
 
+(function () {
+    try {
+        var json = document.getElementById("modelJson").textContent;
+        var model = JSON.parse(json);
+        angular.module("app").constant("Model", model);
+    } catch (e) {
+
+    }
+})();

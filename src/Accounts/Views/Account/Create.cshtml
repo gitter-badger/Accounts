@@ -9,10 +9,9 @@
     </h1>
     <div class="content">
         <form id="create-new-password" name="createNewPassword" method="post">
-            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
             <fieldset class="inner-content">
-            <p class="content-text">
-                Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
+                <p class="content-text">
+                    Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
                 </p>
                 <div data-password-validator data-validity="passwordValidity" data-content="model.password"></div>
                 <div class="form-wrapper">
@@ -40,26 +39,40 @@
                         </div>
                     </button>
                 </div>
-                <!--<div loader-wrap data-ng-show="awaitingServerResponse" class="loader-wrap" data-loadertext="setting your new password..." ng-cloak></div>-->
             </fieldset>
         </form>
-        <form id="capture-email" name="captureEmail" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
-            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+        <form id="capture-email" name="captureEmail" method="post" class="capture-comms animated inner-content"
+              data-ng-show="!account.primaryEmailExists"
+              data-ng-if="account.passwordSet && !account.primaryEmailExists">
             <h3 class="subheading">We have noticed that we don't have your email address.</h3>
             <p class="content-text">
                 Providing your email address will allow us to communicate with you regarding your account activity and assist you should you need to reset your password.
             </p>
             <div class="form-wrapper">
                 <label for="email" class="input label-heading">Enter your email address</label>
-                <input required name="email" id="email" type="text" class="input text email-icon" placeholder="email@domain.com" ng-model="model.email">
+                <input required name="email" id="email" type="email" class="input text email-icon" placeholder="email@domain.com" ng-model="model.email">
             </div>
             <hr class="divider">
             <div class="form-wrapper">
-                <button id="submit-email" class="btn action" ng-disabled="captureEmail.$invalid">Continue</button>
+                <button id="password-email" class="btn action" type="submit"
+                        data-ng-click="updateContactDetails()"
+                        data-ng-class="{'loading':awaitingServerResponse}"
+                        data-ng-disabled="captureEmail.$invalid || awaitingServerResponse">
+                    <span ng-if="!awaitingServerResponse">Continue</span>
+                    <span ng-if="awaitingServerResponse">Saving your email address...</span>
+                    <div ng-if="awaitingServerResponse" class="loader spinner">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </button>
             </div>
         </form>
-        <form id="capture-phone" name="capturePhone" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
-            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
+        <form id="capture-phone" name="capturePhone" method="post" class="capture-comms animated inner-content"
+              data-ng-show="!account.primaryPhoneExists"
+              data-ng-if="account.passwordSet && account.primaryEmailExists && !account.primaryPhoneExists">
             <p class="content-text">
                 Losing access to your account can be a frustrating experience so we have created a simple and east way for you to
                 <span class="bold-text">reset your password using text message</span> (SMS). All you need to do is provide us with your
@@ -71,25 +84,48 @@
             </div>
             <hr class="divider">
             <div class="form-wrapper">
-                <button id="submit-phone" class="btn action" ng-disabled="capturePhone.$invalid">Continue</button>
+                <button id="password-phone" class="btn action" type="submit"
+                        data-ng-click="updateContactDetails()"
+                        data-ng-class="{'loading':awaitingServerResponse}"
+                        data-ng-disabled="capturePhone.$invalid || awaitingServerResponse">
+                    <span ng-if="!awaitingServerResponse">Continue</span>
+                    <span ng-if="awaitingServerResponse">Saving your phone number...</span>
+                    <div ng-if="awaitingServerResponse" class="loader spinner">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </button>
                 <a class="link-text right" href="" id="skip-capture">No thanks, sign me in</a>
             </div>
         </form>
-        <form id="password-error" name="capturePhone" method="post" action="{{model.loginUrl}}" class="capture-comms-form animated inner-content">
-            <anti-forgery-token token="model.antiForgery"></anti-forgery-token>
-                <p class="content-text">
-                    In order to keep your account secure please choose a password that you haven't used previously.
-                </p>
-
-                <hr class="divider">
-                <div class="form-wrapper">
-                    <button class="btn action" type="submit">Ok, thanks</button>
-                </div>
-            </form>
-        <div>
+        <div id="email-verification-message" class="capture-comms animated inner-content"
+            data-ng-show="model.submitted && model.email">
+            <p class="content-text">
+                We've sent you an email! - enter rest of content here -.
+            </p>
+            <hr class="divider">
+            <div class="form-wrapper">
+                <a class="btn action" href='@Url.Action("continue")'>Ok, thanks</a>
+            </div>
         </div>
-
+        <div id="phone-verification-message" class="capture-comms animated inner-content"
+            data-ng-show="model.submitted && model.phone">
+            <p class="content-text">
+                We've sent you an email! - enter rest of content here -.
+            </p>
+            <hr class="divider">
+            <div class="form-wrapper">
+                <a class="btn action" href='@Url.Action("continue")'>Ok, thanks</a>
+            </div>
+        </div>
     </div>
+</div>
+
+<div id="modelJson">
+    @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.None, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() }))
 </div>
 
 @section scripts {
