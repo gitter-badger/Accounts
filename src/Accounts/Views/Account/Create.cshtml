@@ -16,7 +16,7 @@
                 <div data-password-validator data-validity="passwordValidity" data-content="model.password"></div>
                 <div class="form-wrapper">
                     <label for="password" class="input label-heading">New password:</label>
-                    <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password"
+                    <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password" max="64"
                            data-ng-required="true"
                            data-ng-model="model.password"
                            data-ng-disabled="isFormDisabled()">
