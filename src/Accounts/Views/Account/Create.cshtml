@@ -103,8 +103,10 @@
         </form>
         <div id="email-verification-message" class="capture-comms animated inner-content"
             data-ng-show="model.submitted && model.email">
+            <h3 class="subheading">We've sent an email to [email address] with a link to verify your account.</h3>
             <p class="content-text">
-                We've sent you an email! - enter rest of content here -.
+                The activation link will expire in _ hours, make sure you verify your account soon. If the link expires you will need to request
+                another verification link.
             </p>
             <hr class="divider">
             <div class="form-wrapper">
@@ -113,8 +115,9 @@
         </div>
         <div id="phone-verification-message" class="capture-comms animated inner-content"
             data-ng-show="model.submitted && model.phone">
+            <h3 class="subheading">A code has been sent to [mobile number].</h3>
             <p class="content-text">
-                We've sent you an email! - enter rest of content here -.
+                To complete verification please visit the <a href="">about me</a> page and enter your code.
             </p>
             <hr class="divider">
             <div class="form-wrapper">

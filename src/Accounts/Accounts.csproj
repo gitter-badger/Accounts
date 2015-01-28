@@ -215,9 +215,13 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\emailResetCodeTemplate.html" />
+    <Content Include="Resources\emailVerificationTemplate.html" />
     <Content Include="Resources\Images\bg_main.jpg" />
     <Content Include="Resources\Images\email-icon.png" />
     <Content Include="Resources\Images\email-sprite.png" />
+    <Content Include="Resources\Images\Email\emailfooter.jpg" />
+    <Content Include="Resources\Images\Email\emailheader.jpg" />
     <Content Include="Resources\Images\eye-sprite.png" />
     <Content Include="Resources\Images\lock-icon.png" />
     <Content Include="Resources\Images\lock-sprite.png" />
