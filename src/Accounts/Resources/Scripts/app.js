@@ -17,10 +17,30 @@
         $scope.awaitingServerResponse = false;
         $scope.passwordServerFail = false;
         $scope.passwordValidity = {
+            specialChars: false,
             minChars:false,
-            specialChars:false,
             capsUsed:false,
             numUsed:false,
+            check: function(pswd) {
+                this.minChars = pswd.length >= 8;
+
+                if(pswd.match(/[a-z].*[A-Z]|[A-Z].*[a-z]/))
+                    this.capsUsed = true;
+                else
+                    this.capsUsed = false;
+
+                if(pswd.match(/\d/))
+                    this.numUsed = true;
+                else
+                    this.numUsed = false;
+
+                if(pswd.match(/[-!$£@%^&#*()_+|~=`{}\[\]:";'<>?¬,.\\\/]/))
+                    this.specialChars = true;
+                else
+                    this.specialChars = false;
+
+                this.isValid();
+            },
             isValid: function() {
                 return _.reduce(this, function(result, num) {
                     if(typeof(num) != "function") {
@@ -79,8 +99,8 @@
                     $scope.awaitingServerResponse = false;
                     $scope.model.submitted = true;
                 },
-                function(e) {
-                    console.log("FAIL");
+                function() {
+                    //console.log("FAIL");
                 }
             );
         };
@@ -113,7 +133,7 @@
         }
     });
 
-    app.directive("passwordMaskControl", function() {
+    app.directive("passwordMaskControl", ['$timeout', function($timeout) {
 
         function link() {
 
@@ -142,7 +162,7 @@
                         }
                     }(events);
                     x.replaceWith(tmp);
-                    setTimeout(cb, 10);
+                    $timeout(cb, 10);
                     return tmp;
                 }
             }
@@ -159,7 +179,7 @@
         return {
             link:link
         }
-    });
+    }]);
 
     app.directive("passwordValidator", function() {
         var html = '<ul class="password-validation">';
@@ -175,16 +195,7 @@
             },
             link: function(scope) {
                 var checkValidity = function(pswd) {
-
-                    scope.validity.minChars = pswd.length >= 8;
-
-                    scope.validity.capsUsed = pswd.match(/[a-z].*[A-Z]|[A-Z].*[a-z]/);
-
-                    scope.validity.numUsed = pswd.match(/\d/);
-
-                    scope.validity.specialChars = pswd.match(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/);
-
-                    scope.validity.isValid();
+                    scope.validity.check(pswd);
                 };
 
                 scope.$watch('content', function(newVal){

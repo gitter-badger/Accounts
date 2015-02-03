@@ -347,9 +347,7 @@ input#password[type="text"] + .unmask {
   .password-validation li p {
     margin: 5px 0 5px 10px;
   }
-}
-/* LAYOUT */
-@media screen and (max-width: 700px) {
+  /* LAYOUT */
   body.row {
     width: 100%;
   }
@@ -377,6 +375,9 @@ input#password[type="text"] + .unmask {
   }
   .timer-wrap {
     margin: 15px 0 15px 20%;
+  }
+  .unmask {
+    top: 24px;
   }
   .icon.email,
   .icon.phone {

@@ -5,7 +5,7 @@
     <h1 class="page-header">
         <span data-ng-if="!account.passwordSet">Create a new password</span>
         <span data-ng-if="account.passwordSet">Don't lose access to your account</span>
-        <a class="link-text right header" href="">Help!</a>
+        <!--<a class="link-text right header" href="">Help!</a>-->
     </h1>
     <div class="content">
         <form id="create-new-password" name="createNewPassword" method="post">
@@ -16,7 +16,7 @@
                 <div data-password-validator data-validity="passwordValidity" data-content="model.password"></div>
                 <div class="form-wrapper">
                     <label for="password" class="input label-heading">New password:</label>
-                    <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password"
+                    <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password" max="64"
                            data-ng-required="true"
                            data-ng-model="model.password"
                            data-ng-disabled="isFormDisabled()">
