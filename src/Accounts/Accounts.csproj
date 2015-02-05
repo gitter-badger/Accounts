@@ -229,18 +229,16 @@
     <Content Include="Resources\Images\password-sprite.png" />
     <Content Include="Resources\Images\phone-icon.png" />
     <Content Include="Resources\Images\reset-sprite.png" />
+    <Content Include="Resources\Images\time-icon.png" />
     <Content Include="Resources\Images\username-sprite.png" />
-    <Content Include="Resources\Scripts\angular.1.2.13.js" />
     <Content Include="Resources\Scripts\angular.min.js" />
     <Content Include="Resources\Scripts\app.js" />
     <Content Include="Resources\Scripts\jquery-1.11.0.js" />
     <Content Include="Resources\Scripts\lodash.min.js" />
-    <Content Include="Resources\Scripts\password-validation.js" />
     <Content Include="Resources\Scripts\reset.js" />
     <Content Include="Resources\Styles\modules.css" />
     <Content Include="Resources\Styles\normalise.css" />
     <Content Include="Resources\Styles\Site.css" />
-    <Content Include="Resources\Styles\_Grid.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -268,8 +266,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Resources\Styles\modules.less" />
-    <Content Include="Resources\Styles\_Grid.less" />
-    <Content Include="Views\Account\Reset.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -55,7 +55,6 @@ namespace Accounts.App_Start {
             container.Configure(x =>
             {
                 x.For<IAuthenticationManager>()
-                    .HttpContextScoped()
                     .Use(() => HttpContext.Current.GetOwinContext().Authentication);
             });
         }
