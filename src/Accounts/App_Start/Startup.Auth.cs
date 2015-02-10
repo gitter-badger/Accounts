@@ -96,7 +96,8 @@ namespace Accounts
         public static string BaseAddress  =         WebConfigurationManager.AppSettings["accounts:baseUrl"];
         public static string AuthAddress  =         WebConfigurationManager.AppSettings["accounts:authUrl"].TrimEnd('/');
         public static string IdentityApiAddress =   WebConfigurationManager.AppSettings["accounts:identityApiUrl"];
-        public static string PeopleCloudAddress =   WebConfigurationManager.AppSettings["accounts:peopleCloudUrl"];
+        public static string PeopleCloudAddress = WebConfigurationManager.AppSettings["accounts:peopleCloudUrl"];
+        public static string CdnAddress = WebConfigurationManager.AppSettings["accounts:cdnUrl"];
 
         public static string AuthorizeEndpoint = AuthAddress + "/connect/authorize";
         public static string LogoutEndpoint = AuthAddress + "/connect/endsession";

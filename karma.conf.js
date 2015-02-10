@@ -18,6 +18,7 @@ module.exports = function(config) {
       'tests/libs/angular.js',
       'tests/libs/angular-mocks.js',
       'src/accounts/resources/scripts/jquery-1.11.0.js',
+      'src/accounts/resources/scripts/lodash.min.js',
       'src/accounts/resources/scripts/app.js',
       'tests/*.js'
     ],
