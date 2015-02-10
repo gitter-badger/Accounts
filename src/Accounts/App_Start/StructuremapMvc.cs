@@ -15,11 +15,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Web;
 using Accounts.App_Start;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Provider;
-using StructureMap.Web;
 using WebActivatorEx;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(StructuremapMvc), "Start")]
@@ -52,12 +48,6 @@ namespace Accounts.App_Start {
             StructureMapDependencyScope = new StructureMapDependencyScope(container);
             DependencyResolver.SetResolver(StructureMapDependencyScope);
             DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));
-            container.Configure(x =>
-            {
-                x.For<IAuthenticationManager>()
-                    .HttpContextScoped()
-                    .Use(() => HttpContext.Current.GetOwinContext().Authentication);
-            });
         }
 
         #endregion

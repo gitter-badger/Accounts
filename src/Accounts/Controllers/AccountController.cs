@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 using Newtonsoft.Json;
+using StructureMap.Diagnostics;
 
 namespace Accounts.Controllers
 {
@@ -58,9 +62,14 @@ namespace Accounts.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult UpdatePassword(string password)
+        public ActionResult UpdatePassword([ModelBinder(typeof(PasswordRequestModelValidator))]PasswordRequest passwordRequest)
         {
             //validate password check password satisfies the complexity rules
+            if (!this.ModelState.IsValid)
+            {
+                Response.StatusCode = (int) HttpStatusCode.BadRequest;
+                return Json(new {success = false, errorMessage = "invalid request"});
+            }
 
             //call api to reset the password
             //get the current user
@@ -79,7 +88,7 @@ namespace Accounts.Controllers
 
             var pairs = new List<KeyValuePair<string, string>>
             {
-                new KeyValuePair<string, string>("password", password)
+                new KeyValuePair<string, string>("password", passwordRequest.Password)
             };
 
             var content = new FormUrlEncodedContent(pairs);
@@ -166,6 +175,42 @@ namespace Accounts.Controllers
         }
 
     }
+
+    public class PasswordRequest
+    {
+        public string Password { get; set; }
+    }
+
+
+    public class PasswordRequestModelValidator : DefaultModelBinder
+    {
+        protected override bool OnPropertyValidating(ControllerContext controllerContext, ModelBindingContext bindingContext,
+            PropertyDescriptor propertyDescriptor, object value)
+        {
+            if (propertyDescriptor.Name == "Password")
+            {
+                var val = value as string;
+                if (ValidatePassword(val))
+                {
+                    return true;
+                }
+                bindingContext.ModelState.AddModelError("Password", "Does not meet password compliance requirements");
+                return false;
+            }
+            return true;
+        }
+
+        public static bool ValidatePassword(string val)
+        {
+            return !String.IsNullOrWhiteSpace(val)
+                   && val.Length >= 8
+                   && val.Length <= 64
+                   && Regex.IsMatch(val, "[a-z].*[A-Z]|[A-Z].*[a-z]")
+                   && Regex.IsMatch(val, "\\d")
+                   && Regex.IsMatch(val, "[-!$%^&*()_+|~=`{}\\[\\]:\";'<>?,.\\/]");
+        }
+    }
+
 
     public class ContactDetails
     {
