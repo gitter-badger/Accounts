@@ -15,6 +15,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Web;
+using Microsoft.Owin.Security;
+using StructureMap.Web;
+
 namespace Accounts.DependencyResolution {
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
@@ -30,6 +34,9 @@ namespace Accounts.DependencyResolution {
 					scan.With(new ControllerConvention());
                 });
             //For<IExample>().Use<Example>();
+            For<IAuthenticationManager>()
+                .HttpContextScoped()
+                .Use(() => HttpContext.Current.GetOwinContext().Authentication);
         }
 
         #endregion
