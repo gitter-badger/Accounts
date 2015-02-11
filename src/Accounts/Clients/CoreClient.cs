@@ -11,6 +11,7 @@ namespace Accounts.Clients
     {
         Response<object> UpdateContactDetails(string id, ContactDetails contactDetails);
         Response<ContactDetailsResponse> GetContactDetails(string id);
+        Response<object> UpdatePassword(string id, PasswordRequest passwordRequest);
     }
 
     public class CoreClient : ICoreClient
@@ -52,6 +53,26 @@ namespace Accounts.Clients
                 return new Response<ContactDetailsResponse> { Body = obj };
             }
             return new Response<ContactDetailsResponse> { Errored = true };
+        }
+
+        public Response<object> UpdatePassword(string id, PasswordRequest passwordRequest)
+        {
+            var passwordRequestString = JsonConvert.SerializeObject(passwordRequest,
+                Formatting.None,
+                new JsonSerializerSettings()
+                {
+                    ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
+                });
+
+            var content = new StringContent(passwordRequestString, Encoding.UTF8, "application/json");
+
+            // call sync
+            var response = _client.PostAsync("/credentials/" + id, content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return new Response<object>();
+            }
+            return new Response<object>{ Errored = true };
         }
     }
 
