@@ -96,6 +96,7 @@
     <Compile Include="Controllers\CreateAccountFixture.cs" />
     <Compile Include="Controllers\PasswordRequirementsFixture.cs" />
     <Compile Include="Controllers\UpdateContactDetailsFixture.cs" />
+    <Compile Include="Controllers\UpdatePasswordFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

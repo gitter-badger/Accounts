@@ -75,23 +75,14 @@ namespace Accounts.Controllers
                 return UnauthorisedJson();
             }
 
-            var pairs = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("password", passwordRequest.Password)
-            };
+            var response = _coreClient.UpdatePassword(subClaim.Value, passwordRequest);
 
-            var content = new FormUrlEncodedContent(pairs);
-
-            var client = new HttpClient {BaseAddress = new Uri(EndPoints.IdentityApiAddress)};
-
-            // call sync
-            var response = client.PostAsync("/credentials/" + subClaim.Value, content).Result;
-            if (response.IsSuccessStatusCode)
+            if (!response.Errored)
             {
                 return Json(new {success = true});
             }
 
-            Response.StatusCode = (int) response.StatusCode;
+            Response.StatusCode = (int) HttpStatusCode.BadRequest;
             return Json(new { success = false });
         }
 
