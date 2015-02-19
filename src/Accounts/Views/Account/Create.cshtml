@@ -1,14 +1,14 @@
 ﻿@{
     ViewBag.Title = "Account";
 }
-<div data-ng-app="app" data-ng-controller="CompletionController" class="container" id="add-contact-details" ng-cloak>
+<div id="add-contact-details" class="container" data-ng-app="app" data-ng-controller="CompletionController" data-ng-cloak>
     <h1 class="page-header">
         <span data-ng-if="!account.passwordSet">Create a new password</span>
         <span data-ng-if="account.passwordSet">Don't lose access to your account</span>
         <!--<a class="link-text right header" href="">Help!</a>-->
     </h1>
-    <div class="content">
-        <form id="create-new-password" name="createNewPassword" method="post">
+    <div class="content animated-transitions" data-ng-switch="viewState.view">
+        <form id="create-new-password" name="createNewPassword" data-match-sibling-height data-auto-focus>
             <fieldset class="inner-content">
                 <p class="content-text">
                     Make your password memorable and unique!<span class="bold-text"> Your new password must contain: </span>
@@ -16,15 +16,15 @@
                 <div data-password-validator data-validity="passwordValidity" data-content="model.password"></div>
                 <div class="form-wrapper">
                     <label for="password" class="input label-heading">New password:</label>
-                    <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password" max="64"
+                    <input required id="password" name="password" type="password" class="input text password-icon" placeholder="Password" max="64" tabindex="1"
                            data-ng-required="true"
                            data-ng-model="model.password"
                            data-ng-disabled="isFormDisabled()">
-                    <button password-mask-control class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
+                    <button password-mask-control class="unmask" type="button" title="Mask/Unmask password to check content" tabindex="3">Unmask</button>
                 </div>
                 <hr class="divider">
                 <div class="form-wrapper">
-                    <button id="password-submit" class="btn action" type="submit"
+                    <button id="password-submit" class="btn action" type="submit" tabindex="2"
                             data-ng-click="updatePassword()"
                             data-ng-class="{'loading':awaitingServerResponse}"
                             data-ng-disabled="!passwordValidity.isValid() || isFormDisabled()">
@@ -41,87 +41,94 @@
                 </div>
             </fieldset>
         </form>
-        <form id="capture-email" name="captureEmail" method="post" class="capture-comms animated inner-content"
-              data-ng-show="!account.primaryEmailExists"
-              data-ng-if="account.passwordSet && !account.primaryEmailExists">
-            <h3 class="subheading">We have noticed that we don't have your email address.</h3>
-            <p class="content-text">
-                Providing your email address will allow us to communicate with you regarding your account activity and assist you should you need to reset your password.
-            </p>
-            <div class="form-wrapper">
-                <label for="email" class="input label-heading">Enter your email address</label>
-                <input required name="email" id="email" type="email" class="input text email-icon" placeholder="email@domain.com" ng-model="model.email">
-            </div>
-            <hr class="divider">
-            <div class="form-wrapper">
-                <button id="password-email" class="btn action" type="submit"
-                        data-ng-click="updateContactDetails()"
-                        data-ng-class="{'loading':awaitingServerResponse}"
-                        data-ng-disabled="captureEmail.$invalid || awaitingServerResponse">
-                    <span ng-if="!awaitingServerResponse">Continue</span>
-                    <span ng-if="awaitingServerResponse">Saving your email address...</span>
-                    <div ng-if="awaitingServerResponse" class="loader spinner">
-                        <div class="rect1"></div>
-                        <div class="rect2"></div>
-                        <div class="rect3"></div>
-                        <div class="rect4"></div>
-                        <div class="rect5"></div>
-                    </div>
-                </button>
-            </div>
-        </form>
-        <form id="capture-phone" name="capturePhone" method="post" class="capture-comms animated inner-content"
-              data-ng-show="!account.primaryPhoneExists"
-              data-ng-if="account.passwordSet && account.primaryEmailExists && !account.primaryPhoneExists">
-            <p class="content-text">
-                Losing access to your account can be a frustrating experience so we have created a simple and east way for you to
-                <span class="bold-text">reset your password using text message</span> (SMS). All you need to do is provide us with your
-                mobile number and you are ready to go!
-            </p>
-            <div class="form-wrapper">
-                <label for="email" class="input label-heading">Enter your mobile number</label>
-                <input required name="phone" id="phone" type="text" class="input text mobile-icon" placeholder="Enter your phone number" ng-model="model.phone">
-            </div>
-            <hr class="divider">
-            <div class="form-wrapper">
-                <button id="password-phone" class="btn action" type="submit"
-                        data-ng-click="updateContactDetails()"
-                        data-ng-class="{'loading':awaitingServerResponse}"
-                        data-ng-disabled="capturePhone.$invalid || awaitingServerResponse">
-                    <span ng-if="!awaitingServerResponse">Continue</span>
-                    <span ng-if="awaitingServerResponse">Saving your phone number...</span>
-                    <div ng-if="awaitingServerResponse" class="loader spinner">
-                        <div class="rect1"></div>
-                        <div class="rect2"></div>
-                        <div class="rect3"></div>
-                        <div class="rect4"></div>
-                        <div class="rect5"></div>
-                    </div>
-                </button>
-                <a class="link-text right" href="" id="skip-capture">No thanks, sign me in</a>
+        <form id="capture-email" name="captureEmail" class="animated layer stick"
+              data-ng-switch-when="capture-email" data-ng-animate data-match-sibling-height data-auto-focus>
+            <div class="inner-content">
+                <h3 class="subheading">We have noticed that we don't have your email address.</h3>
+                <p class="content-text">
+                    Providing your email address will allow us to communicate with you regarding your account activity and assist you should you need to reset your password.
+                </p>
+                <div class="form-wrapper">
+                    <label for="email" class="input label-heading">Enter your email address</label>
+                    <input required name="email" id="email" type="email" class="input text email-icon" placeholder="email@domain.com" tabindex="4" data-ng-model="model.email">
+                </div>
+                <hr class="divider">
+                <div class="form-wrapper">
+                    <button id="password-email" class="btn action" type="submit" tabindex="5"
+                            data-ng-click="updateContactDetails()"
+                            data-ng-class="{'loading':awaitingServerResponse}"
+                            data-ng-disabled="captureEmail.$invalid || awaitingServerResponse">
+                        <span data-ng-if="!awaitingServerResponse">Continue</span>
+                        <span data-ng-if="awaitingServerResponse">Saving your email address...</span>
+                        <div data-ng-if="awaitingServerResponse" class="loader spinner">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
+                    </button>
+                </div>
             </div>
         </form>
-        <div id="email-verification-message" class="capture-comms animated inner-content"
-            data-ng-show="model.submitted && model.email">
-            <h3 class="subheading">We've sent an email to [email address] with a link to verify your account.</h3>
-            <p class="content-text">
-                The activation link will expire in _ hours, make sure you verify your account soon. If the link expires you will need to request
-                another verification link.
-            </p>
-            <hr class="divider">
-            <div class="form-wrapper">
-                <a class="btn action" href='@Url.Action("continue")'>Ok, thanks</a>
+        <form id="capture-phone" name="capturePhone" class="animated layer stick"
+              data-ng-switch-when="capture-mobile" data-ng-animate data-match-sibling-height data-auto-focus>
+            <div class="inner-content">
+                <p class="content-text">
+                    Losing access to your account can be a frustrating experience so we have created a simple and east way for you to
+                    <span class="bold-text">reset your password using text message</span> (SMS). All you need to do is provide us with your
+                    mobile number and you are ready to go!
+                </p>
+                <div class="form-wrapper">
+                    <label for="email" class="input label-heading">Enter your mobile number</label>
+                    <input required name="phone" id="phone" type="text" class="input text mobile-icon" placeholder="Enter your phone number" tabindex="6"
+                           data-ng-model="model.mobile">
+                </div>
+                <hr class="divider">
+                <div class="form-wrapper">
+                    <button id="password-phone" class="btn action" type="submit" tabindex="7"
+                            data-ng-click="updateContactDetails()"
+                            data-ng-class="{'loading':awaitingServerResponse}"
+                            data-ng-disabled="capturePhone.$invalid || awaitingServerResponse">
+                        <span data-ng-if="!awaitingServerResponse">Continue</span>
+                        <span data-ng-if="awaitingServerResponse">Saving your phone number...</span>
+                        <div data-ng-if="awaitingServerResponse" class="loader spinner">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
+                    </button>
+                    <a class="link-text right" href="continue" id="skip-capture" tabindex="8">No thanks, sign me in</a>
+                </div>
+            </div>
+        </form>
+        <div id="email-verification-message" class="animated layer"
+            data-ng-switch-when="email-verification-message" data-ng-animate data-match-sibling-height data-auto-focus>
+            <div class="inner-content">
+                <h3 class="subheading">We've sent an email to {{model.email}} with a link to verify your account.</h3>
+                <p class="content-text">
+                    The activation link will expire in _ hours, make sure you verify your account soon. If the link expires you will need to request
+                    another verification link.
+                </p>
+                <hr class="divider">
+                <div class="form-wrapper">
+                    <a class="btn action" href='continue' tabindex="9">Ok, thanks</a>
+                </div>
             </div>
         </div>
-        <div id="phone-verification-message" class="capture-comms animated inner-content"
-            data-ng-show="model.submitted && model.phone">
-            <h3 class="subheading">A code has been sent to [mobile number].</h3>
-            <p class="content-text">
-                To complete verification please visit the <a href="">about me</a> page and enter your code.
-            </p>
-            <hr class="divider">
-            <div class="form-wrapper">
-                <a class="btn action" href='@Url.Action("continue")'>Ok, thanks</a>
+        <div id="phone-verification-message" class="animated layer"
+            data-ng-switch-when="mobile-verification-message" data-ng-animate data-match-sibling-height data-auto-focus>
+            <div class="inner-content">
+                <h3 class="subheading">A code has been sent to {{model.mobile}}.</h3>
+                <p class="content-text">
+                    To complete verification please visit the about me page and enter your code.
+                </p>
+                <hr class="divider">
+                <div class="form-wrapper">
+                    <a class="btn action" href='continue' tabindex="10">Ok, thanks</a>
+                </div>
             </div>
         </div>
     </div>
@@ -133,6 +140,8 @@
 
 @section scripts {
 <script src="../Resources/Scripts/angular.min.js"></script>
+<script src="../Resources/Scripts/angular-animate.min.js"></script>
 <script src="../Resources/Scripts/lodash.min.js"></script>
 <script src="../Resources/Scripts/app.js"></script>
+<script src="@EndPoints.CdnAddress/directives/login.js"></script>
 }

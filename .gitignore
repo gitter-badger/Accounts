@@ -183,4 +183,3 @@ UpgradeLog*.htm
 FakesAssemblies/
 
 .idea/**
-bower_components/
