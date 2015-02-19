@@ -5,47 +5,29 @@
 (function () {
     "use strict";
 
-    var app = angular.module("app", []);
+    var app = angular.module("app", ['ngAnimate', 'controllers', 'directives']);
 
-
-    app.controller("ResetController", ['$scope', '$timeout', function ($scope, $timeout) {
-
-    }]);
-
-    app.controller("CompletionController", ['$scope', 'CredentialService', 'Model',  function ($scope, credentialService, viewModel) {
+    var controllers = angular.module("controllers", [])
+        .controller("CompletionController", ['$scope', 'CredentialService', 'Model',  function ($scope, credentialService, viewModel) {
 
         $scope.awaitingServerResponse = false;
         $scope.passwordServerFail = false;
         $scope.passwordValidity = {
-            specialChars: false,
+            specialChars:false,
             minChars:false,
             capsUsed:false,
             numUsed:false,
             check: function(pswd) {
                 this.minChars = pswd.length >= 8;
-
-                if(pswd.match(/[a-z].*[A-Z]|[A-Z].*[a-z]/))
-                    this.capsUsed = true;
-                else
-                    this.capsUsed = false;
-
-                if(pswd.match(/\d/))
-                    this.numUsed = true;
-                else
-                    this.numUsed = false;
-
-                if(pswd.match(/[-!$£@%^&#*()_+|~=`{}\[\]:";'<>?¬,.\\\/]/))
-                    this.specialChars = true;
-                else
-                    this.specialChars = false;
-
+                this.capsUsed = pswd.match(/[a-z].*[A-Z]|[A-Z].*[a-z]/);
+                this.numUsed = pswd.match(/\d/);
+                this.specialChars = pswd.match(/[-!$£@%^&#*()_+|~=`{}\[\]:";'<>?¬,.\\\/]/);
                 this.isValid();
             },
             isValid: function() {
                 return _.reduce(this, function(result, num) {
-                    if(typeof(num) != "function") {
+                    if(typeof(num) != "function")
                         return result && num;
-                    }
                     return result;
                 }, true);
             }
@@ -54,10 +36,32 @@
             return ($scope.awaitingServerResponse || $scope.account.passwordSet);
         };
 
+        var viewStateModel = function() {
+            return {
+                view: "create-new-password",
+                setView: function() {
+                    if (!$scope.account.passwordSet)
+                        return this.view = "create-new-password";
+                    if ($scope.model.submitted && $scope.model.email)
+                        return this.view = "email-verification-message";
+                    if ($scope.model.submitted && $scope.model.mobile)
+                        return this.view = "mobile-verification-message";
+                    if ($scope.account.primaryEmailExists && $scope.account.primaryPhoneExists)
+                        window.location.replace("continue");
+                    if (!$scope.account.primaryEmailExists)
+                        return this.view = "capture-email";
+                    if ($scope.account.primaryEmailExists && !$scope.account.primaryPhoneExists)
+                        return this.view = "capture-mobile";
+                }
+            }
+        };
+
+        $scope.viewState = new viewStateModel();
+
         $scope.model = {
             password:null,
             email:null,
-            phone:null,
+            mobile:null,
             submitted:false
         };
 
@@ -81,7 +85,7 @@
                 function() {
                     $scope.account.updatedPassword();
                     $scope.awaitingServerResponse = false;
-                    determineCommsRequest();
+                    $scope.viewState.setView();
                 },
                 function() {
                     $scope.awaitingServerResponse = false;
@@ -94,10 +98,11 @@
             $scope.awaitingServerResponse = true;
             credentialService.submitContactDetails(
                 $scope.model.email,
-                $scope.model.phone,
+                $scope.model.mobile,
                 function() {
                     $scope.awaitingServerResponse = false;
                     $scope.model.submitted = true;
+                    $scope.viewState.setView();
                 },
                 function() {
                     //console.log("FAIL");
@@ -105,18 +110,7 @@
             );
         };
 
-        var determineCommsRequest = function() {
-            if($scope.account.primaryEmailExists && $scope.account.primaryPhoneExists) {
-                //we have all user's details, forward them to homepage
-            } else if($scope.account.primaryEmailExists && !$scope.account.primaryPhoneExists) {
-                $('#capture-phone').addClass('bounceInDown');
-            } else if(!$scope.account.primaryEmailExists && $scope.account.primaryPhoneExists) {
-                $('#capture-email').addClass('bounceInDown');
-            } else if(!$scope.account.primaryEmailExists && !$scope.account.primaryPhoneExists) {
-                $('#capture-email').addClass('bounceInDown');
-            }
-        };
-
+        $scope.viewState.setView();
     }]);
 
     app.directive("loaderWrap", function() {
@@ -133,80 +127,6 @@
         }
     });
 
-    app.directive("passwordMaskControl", ['$timeout', function($timeout) {
-
-        function link() {
-
-            function changeType(x, type) {
-                if(x.prop('type') == type)
-                    return x;
-                try {
-                    return x.prop('type', type);
-                } catch(e) {
-
-                    var html = $("<div>").append(x.clone()).html();
-                    var regex = /type=(")?([^"\s]+)(")?/;
-                    var tmp = $(html.match(regex) == null ?
-                        html.replace(">", ' type="' + type + '">') :
-                        html.replace(regex, 'type="' + type + '"') );
-                    tmp.data('type', x.data('type') );
-                    var events = x.data('events');
-                    var cb = function(events) {
-                        return function() {
-                            for(var i in events)
-                            {
-                                var y = events[i];
-                                for(var j in y)
-                                    tmp.bind(i, y[j].handler);
-                            }
-                        }
-                    }(events);
-                    x.replaceWith(tmp);
-                    $timeout(cb, 10);
-                    return tmp;
-                }
-            }
-
-            $('.unmask').on('click', function(){
-                if($(this).prev('input').attr('type') == 'password')
-                    changeType($(this).prev('input'), 'text');
-                else
-                    changeType($(this).prev('input'), 'password');
-                return false;
-            });
-        }
-
-        return {
-            link:link
-        }
-    }]);
-
-    app.directive("passwordValidator", function() {
-        var html = '<ul class="password-validation">';
-        html += '<li id="specialCharacter" data-ng-class="{valid:validity.specialChars}"><span>*!£^</span><p>A symbol</p></li>';
-        html += '<li id="number" data-ng-class="{valid:validity.numUsed}"><span>3</span><p>A number</p></li>';
-        html += '<li id="letter" data-ng-class="{valid:validity.capsUsed}"><span>Aa</span><p>Upper / lower case</p></li>';
-        html += '<li id="length" data-ng-class="{valid:validity.minChars}"><span>8+</span><p>8 characters long</p></li>';
-        html += '</ul>';
-        return {
-            scope: {
-                "validity":"=",
-                "content":"="
-            },
-            link: function(scope) {
-                var checkValidity = function(pswd) {
-                    scope.validity.check(pswd);
-                };
-
-                scope.$watch('content', function(newVal){
-                    if(!newVal) newVal = "";
-                    checkValidity(newVal);
-                }, true);
-            },
-            template: html
-        }
-    });
-
     app.service("CredentialService", ['$http', function ($http) {
         return {
             submitCredentials: function (password, successFn, failFn) {
@@ -214,8 +134,8 @@
                     .success(successFn)
                     .error(failFn);
             },
-            submitContactDetails: function(email, phone, successFn, failFn) {
-                $http.post("UpdateContactDetails", { email:email, mobileNumber:phone })
+            submitContactDetails: function(email, mobile, successFn, failFn) {
+                $http.post("UpdateContactDetails", { email:email, mobileNumber:mobile })
                     .success(successFn)
                     .error(failFn);
             }
